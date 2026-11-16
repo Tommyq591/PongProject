@@ -1,0 +1,56 @@
+[
+  {
+    "offset": 0,
+    "seed": 8817,
+    "score": -13.0,
+    "decisions": 3938,
+    "terminated": true,
+    "truncated": false,
+    "elapsed": 11.201434899994638
+  },
+  {
+    "offset": 0,
+    "seed": 8829,
+    "score": -15.0,
+    "decisions": 2542,
+    "terminated": true,
+    "truncated": false,
+    "elapsed": 6.895579500007443
+  },
+  {
+    "offset": 5,
+    "seed": 8817,
+    "score": -11.0,
+    "decisions": 4186,
+    "terminated": true,
+    "truncated": false,
+    "elapsed": 11.896815400046762
+  },
+  {
+    "offset": 5,
+    "seed": 8829,
+    "score": -16.0,
+    "decisions": 3165,
+    "terminated": true,
+    "truncated": false,
+    "elapsed": 8.50954580004327
+  },
+  {
+    "offset": 7,
+    "seed": 8817,
+    "score": -19.0,
+    "decisions": 4100,
+    "terminated": true,
+    "truncated": false,
+    "elapsed": 11.383434599963948
+  },
+  {
+    "offset": 7,
+    "seed": 8829,
+    "score": -17.0,
+    "decisions": 3014,
+    "terminated": true,
+    "truncated": false,
+    "elapsed": 8.278022499987856
+  }
+]

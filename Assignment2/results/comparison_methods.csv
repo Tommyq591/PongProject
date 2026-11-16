@@ -1,0 +1,3 @@
+method,training_seeds,mean_score,across_seed_sd,mean_episode_decisions,comparison_step,mean_auc_score
+double_dqn,3,-20.966666666666665,0.05773502691896288,784.8000000000001,100000,-20.97
+dqn,3,-21.0,0.0,779.8000000000001,100000,-20.94666666666667

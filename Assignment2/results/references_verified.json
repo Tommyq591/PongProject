@@ -1,0 +1,19 @@
+{
+  "accessed_date": "2026-11-10",
+  "method": "Opened primary publisher, author-preprint, official documentation and versioned source pages; no invented bibliographic entries.",
+  "references": [
+    {"title": "Human-level control through deep reinforcement learning", "authors": "Mnih et al.", "year": 2015, "url": "https://doi.org/10.1038/nature14236"},
+    {"title": "Double Q-learning", "author": "Hado van Hasselt", "year": 2010, "url": "https://proceedings.neurips.cc/paper/2010/hash/091d584fced301b442654dd8c23b3fc9-Abstract.html"},
+    {"title": "Deep Reinforcement Learning with Double Q-learning", "authors": "Hado van Hasselt, Arthur Guez, David Silver", "venue_year": "AAAI 2016; preprint 2015", "url": "https://arxiv.org/abs/1509.06461"},
+    {"title": "Revisiting the Arcade Learning Environment: Evaluation Protocols and Open Problems for General Agents", "authors": "Machado et al.", "venue_year": "JAIR 2018; preprint 2017", "url": "https://jair.org/index.php/jair/article/view/11182"},
+    {"title": "Pong environment", "url": "https://ale.farama.org/environments/pong/"},
+    {"title": "AtariPreprocessing", "url": "https://gymnasium.farama.org/api/wrappers/misc_wrappers/#gymnasium.wrappers.AtariPreprocessing"},
+    {"title": "Gymnasium 1.4.0 AtariPreprocessing source", "url": "https://github.com/Farama-Foundation/Gymnasium/blob/v1.4.0/gymnasium/wrappers/atari_preprocessing.py"},
+    {"title": "Handling Time Limits", "url": "https://gymnasium.farama.org/tutorials/gymnasium_basics/handling_time_limits/"},
+    {"title": "PyTorch DQN tutorial", "url": "https://docs.pytorch.org/tutorials/intermediate/reinforcement_q_learning.html"},
+    {"title": "SmoothL1Loss", "url": "https://docs.pytorch.org/docs/2.15/generated/torch.nn.SmoothL1Loss.html"},
+    {"title": "Adam", "url": "https://docs.pytorch.org/docs/2.15/generated/torch.optim.Adam.html"},
+    {"title": "ALE 0.12.1 StellaEnvironment source", "url": "https://raw.githubusercontent.com/Farama-Foundation/Arcade-Learning-Environment/v0.12.1/src/ale/environment/stella_environment.cpp"},
+    {"title": "ALE 0.12.1 ALEState source", "url": "https://raw.githubusercontent.com/Farama-Foundation/Arcade-Learning-Environment/v0.12.1/src/ale/environment/ale_state.cpp"}
+  ]
+}

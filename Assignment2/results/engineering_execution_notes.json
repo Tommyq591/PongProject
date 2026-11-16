@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-10",
+  "notebook_runner": "Local Jupyter kernel launch stalled in the restricted Codex sandbox. Repeated startup checks were interrupted, then execution succeeded outside that sandbox. A private local kernelspec avoids scanning unrelated user kernels, and the runner cleans up its own kernel.",
+  "output_audit": "The first executed notebook had no code-cell errors and the figures/videos were present, but the comment-coverage audit required more standalone comments. Additional explanatory comments were added; the audit then passed with 87 standalone comment lines.",
+  "prose_check": "A source check detected malformed escaped formula characters in the weight-update explanation. The loss and chain-rule equations were rewritten in clear plain-text notation and control-character validation was added.",
+  "training_impact": "These checks did not remove or replace main performance runs. An inactive raw-frame truncation path was corrected during the bounded session; final logs are checked for any actual truncations. All observed main runs, configs and checkpoints remain preserved."
+}

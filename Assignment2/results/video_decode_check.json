@@ -1,0 +1,20 @@
+[
+  {
+    "method": "dqn",
+    "decoded_frames": 762,
+    "fps": 15.0,
+    "size": [
+      160,
+      210
+    ]
+  },
+  {
+    "method": "double_dqn",
+    "decoded_frames": 762,
+    "fps": 15.0,
+    "size": [
+      160,
+      210
+    ]
+  }
+]

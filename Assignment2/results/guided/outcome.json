@@ -1,0 +1,19 @@
+{
+  "step_per_guided_run": 10000,
+  "goal_reached": true,
+  "methods_meeting_goal": [
+    "dqn",
+    "double_dqn"
+  ],
+  "means": {
+    "dqn": -15.866666666666665,
+    "double_dqn": -15.799999999999999
+  },
+  "improvement_vs_40k": {
+    "dqn": 5.000000000000002,
+    "double_dqn": 5.200000000000001
+  },
+  "phase": "follow-up",
+  "original_run_budget": 100000,
+  "stop_reason": "practical improvement reached"
+}

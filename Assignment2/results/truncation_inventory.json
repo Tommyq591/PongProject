@@ -1,0 +1,50 @@
+[
+  {
+    "method": "dqn",
+    "seed": 17,
+    "step": 20000,
+    "status": "paused",
+    "training_truncations": 0,
+    "evaluation_truncations": 0
+  },
+  {
+    "method": "double_dqn",
+    "seed": 17,
+    "step": 20000,
+    "status": "paused",
+    "training_truncations": 0,
+    "evaluation_truncations": 0
+  },
+  {
+    "method": "dqn",
+    "seed": 29,
+    "step": 20000,
+    "status": "paused",
+    "training_truncations": 0,
+    "evaluation_truncations": 0
+  },
+  {
+    "method": "double_dqn",
+    "seed": 29,
+    "step": 20000,
+    "status": "paused",
+    "training_truncations": 0,
+    "evaluation_truncations": 0
+  },
+  {
+    "method": "dqn",
+    "seed": 43,
+    "step": 20000,
+    "status": "paused",
+    "training_truncations": 0,
+    "evaluation_truncations": 0
+  },
+  {
+    "method": "double_dqn",
+    "seed": 43,
+    "step": 20000,
+    "status": "paused",
+    "training_truncations": 0,
+    "evaluation_truncations": 0
+  }
+]

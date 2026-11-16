@@ -1,0 +1,13 @@
+{
+  "policy": "C:\\Users\\tyqnn\\PycharmProjects\\PongProject\\Assignment2\\runs\\main\\dqn_seed_17\\policy.pt",
+  "method": "dqn",
+  "training_steps": 100000,
+  "seed": 900017,
+  "epsilon": 0.01,
+  "recorded_decisions": 822,
+  "partial_score": -21.0,
+  "episode_terminated": true,
+  "episode_truncated": false,
+  "clip_ended_early": false,
+  "note": "A checkpoint policy demonstration; partial score is not a full evaluation score."
+}

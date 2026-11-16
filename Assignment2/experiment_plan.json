@@ -1,0 +1,92 @@
+{
+  "created_utc": "2026-11-10T16:32:43.717037+00:00",
+  "question": "DQN versus Double DQN on Pong under equal budgets",
+  "status": "planned",
+  "methods": [
+    "dqn",
+    "double_dqn"
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "steps_per_run": 100000,
+  "agent_step_definition": "one decision; at most four emulator frames",
+  "pilot_measured_dps": 97.16921681932766,
+  "estimated_training_hours_all_runs": 1.7152208499998476,
+  "estimate_excludes": "evaluation, checkpoint I/O, startup and thermal slowdown",
+  "selection_reason": "CPU/RAM feasibility measured in a separate pilot; no main-run score used for selection.",
+  "primary_metric": "mean raw score over 10 held-out final games, then average across the three training seeds",
+  "learning_speed": "area under periodic mean-score curve divided by decisions; first checkpoint with mean score >= 0",
+  "consistency": "sample standard deviation of per-training-seed final mean scores; also show every seed",
+  "threshold": 0.0,
+  "threshold_reason": "zero is an interpretable non-losing average score, declared before main runs",
+  "evaluation_rule": "epsilon=0.01 using online network, 5 periodic games and 10 final games; separate environment, no learning",
+  "statistical_limit": "three independent training seeds are descriptive evidence, not a well-powered significance test",
+  "run_order": "round-robin at evaluation milestones; method order alternates by seed and milestone",
+  "shared_config": {
+    "method": "dqn",
+    "seed": 17,
+    "total_steps": 100000,
+    "env_id": "ALE/Pong-v5",
+    "frame_skip": 4,
+    "screen_size": 84,
+    "stack_size": 4,
+    "sticky_probability": 0.25,
+    "noop_max": 30,
+    "max_episode_steps": 27000,
+    "replay_capacity": 20000,
+    "learning_starts": 2000,
+    "batch_size": 32,
+    "train_frequency": 4,
+    "gamma": 0.99,
+    "learning_rate": 0.0001,
+    "target_update_interval": 2000,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.05,
+    "epsilon_decay_steps": 80000,
+    "clip_rewards": true,
+    "max_grad_norm": 10.0,
+    "eval_interval": 20000,
+    "eval_episodes": 5,
+    "final_eval_episodes": 10,
+    "eval_epsilon": 0.01,
+    "checkpoint_interval": 10000,
+    "log_interval": 1000,
+    "torch_threads": 4,
+    "device": "cpu"
+  },
+  "runs": [
+    {
+      "method": "dqn",
+      "seed": 17,
+      "folder": "runs/main/dqn_seed_17"
+    },
+    {
+      "method": "double_dqn",
+      "seed": 17,
+      "folder": "runs/main/double_dqn_seed_17"
+    },
+    {
+      "method": "dqn",
+      "seed": 29,
+      "folder": "runs/main/dqn_seed_29"
+    },
+    {
+      "method": "double_dqn",
+      "seed": 29,
+      "folder": "runs/main/double_dqn_seed_29"
+    },
+    {
+      "method": "dqn",
+      "seed": 43,
+      "folder": "runs/main/dqn_seed_43"
+    },
+    {
+      "method": "double_dqn",
+      "seed": 43,
+      "folder": "runs/main/double_dqn_seed_43"
+    }
+  ]
+}

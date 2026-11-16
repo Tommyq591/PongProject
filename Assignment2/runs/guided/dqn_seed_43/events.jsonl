@@ -1,0 +1,4 @@
+{"time": "2026-11-12T19:26:59.592314+00:00", "event": "run_started", "planned_steps": 20000, "session_stop": 10000}
+{"time": "2026-11-12T19:28:11.888423+00:00", "event": "checkpoint_saved", "step": 0, "seconds": 0.46632529998896644}
+{"time": "2026-11-12T19:29:01.945255+00:00", "event": "checkpoint_saved", "step": 5000, "seconds": 2.2593908999697305}
+{"time": "2026-11-12T19:31:40.583887+00:00", "event": "checkpoint_saved", "step": 10000, "seconds": 3.771011900040321}

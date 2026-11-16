@@ -1,0 +1,20 @@
+{
+  "executed_utc": "2026-11-12T19:35:19.790834+00:00",
+  "python": "C:\\Users\\tyqnn\\PycharmProjects\\PongProject\\.venv\\Scripts\\python.exe",
+  "elapsed_s": 1883.606836299994,
+  "code_cells": 34,
+  "unexecuted_code_cells": 0,
+  "error_outputs": 0,
+  "visible_output_blocks": 133,
+  "embedded_png_outputs": 6,
+  "embedded_gameplay_videos": 4,
+  "comment_lines": 119,
+  "main_runs_complete": 6,
+  "main_runs_planned": 6,
+  "shared_evaluated_decisions": 100000,
+  "team_details": "pending",
+  "earlier_AI_use": "must be supplied by user",
+  "guided_runs_evaluated": 6,
+  "guided_decisions_per_run": 10000,
+  "embedded_gif_outputs": 4
+}

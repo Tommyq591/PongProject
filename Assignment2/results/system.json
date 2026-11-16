@@ -1,0 +1,31 @@
+{
+  "time": "2026-11-10T16:30:22.944902+00:00",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "executable": "C:\\Users\\tyqnn\\PycharmProjects\\PongProject\\.venv\\Scripts\\python.exe",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 16,
+  "ram_total_gib": 15.628307342529297,
+  "ram_available_gib": 1.7911300659179688,
+  "disk_free_gib": 197.21429443359375,
+  "cuda_available": false,
+  "cuda_devices": [],
+  "xpu_available": false,
+  "packages": {
+    "torch": "2.15.0",
+    "gymnasium": "1.4.0",
+    "ale-py": "0.12.1",
+    "numpy": "2.5.4",
+    "opencv-python-headless": "5.0.0.93",
+    "matplotlib": "3.11.2",
+    "pandas": "3.1.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0",
+    "imageio": "2.38.1",
+    "imageio-ffmpeg": "0.8.1",
+    "psutil": "7.2.2"
+  },
+  "cpu_name": "13th Gen Intel(R) Core(TM) i7-1360P",
+  "physical_gpu": "Intel(R) Iris(R) Xe Graphics",
+  "gpu_driver": "32.0.101.5768"
+}

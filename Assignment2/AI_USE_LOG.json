@@ -1,0 +1,131 @@
+{
+  "outside_session_assistance": "REQUIRED: add ALL earlier AI assistance from outside this Codex session, including earlier Pong/manual-play help. Its prompts and responses are not available here.",
+  "entries": [
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Help me complete CS4287 Neural Computing Assignment 2, choosing OPTION 2: Atari, using Pong.\n\nRead the attached assignment brief fully before starting. Treat it as authoritative. Complete the implementation, experiments, evaluation and Jupyter notebook—not just a plan.\n\nI am behind in this module, so the explanations must be simple enough for me to learn from and explain in a code inspection. Keep the implementation understandable.\n\nCURRENT SETUP\n\n- Windows, using PyCharm and Jupyter notebooks.\n- Project: C:\\Users\\tyqnn\\PycharmProjects\\PongProject\n- The project has its own .venv.\n- Gymnasium, ale-py and pygame are installed. Check other dependencies.\n- ALE/Pong-v5 loads successfully and I can play it through Gymnasium’s play function.\n- My manual-play code uses frameskip=1 and repeat_action_probability=0.0 for smoother keyboard control. Choose and document appropriate settings for the actual training experiment.\n- Inspect existing files before editing. Preserve my practice notebook.\n\nPROJECT QUESTION\n\nCompare a standard Deep Q Network (DQN) with Double DQN on Atari Pong.\n\nInvestigate whether Double DQN improves learning speed, final performance or consistency under the same training budget. Do not assume it will perform better. An honest negative or inconclusive result is acceptable.\n\nIMPLEMENTATION\n\n1. Inspect the Python environment, available CPU/GPU, RAM and disk space. Select an approach that is practical on this machine. Do not purchase compute or use paid external services.\n2. Prefer PyTorch with an understandable implementation of DQN and Double DQN. If using third-party code, cite it and clearly explain our changes.\n3. Train from game images using suitable preprocessing, such as greyscale, resizing and stacking recent frames. Explain why several frames help the agent recognise movement.\n4. Implement the essential DQN components:\n   - CNN for predicting action values.\n   - Experience replay.\n   - Epsilon-greedy exploration.\n   - Separate online and target networks.\n   - Mini-batch learning and target-network updates.\n   - Loss calculation, backpropagation and optimiser updates.\n5. Implement Double DQN as a controlled modification: use the online network to select the next action and the target network to evaluate it.\n6. Handle episode termination and time-limit truncation correctly.\n7. Check compatibility with installed library versions. Avoid accidentally applying frame skipping twice.\n8. Train without displaying the game window. Save checkpoints, progress logs and configurations so interrupted runs can resume.\n\nEXPERIMENTS\n\n- First run a short pilot to check that the environment, preprocessing, learning update, logging and checkpoint recovery work.\n- Measure actual training throughput before selecting the main training budget. A working game window or a tiny training run is not evidence that the agent has learned.\n- Aim for three independent training seeds per method if practical. This is our proposed experiment size, not an assignment requirement. Explain any necessary reduction.\n- Use matching seeds, equal environment-interaction budgets and the same shared settings for both methods.\n- Keep exploratory tuning separate from final reported runs.\n- Evaluate periodically without learning and with a clearly stated evaluation action rule.\n- Report original game scores during evaluation, even if training uses clipped rewards.\n- Save every planned run, including failures.\n- Record training steps, evaluation scores, episode lengths, elapsed time, seeds and settings.\n- Assess final performance, learning speed and variation across runs. If both methods reach similar final scores, examine how quickly and consistently they got there.\n- Do not invent results, training logs, references or conclusions. Do not present random-action demonstrations as trained agents.\n\nNOTEBOOK REQUIREMENTS\n\nProduce one main .ipynb notebook containing the required explanations, extensively commented code and visible outputs.\n\nCover:\n1. Why reinforcement learning suits Pong.\n2. The environment: observations, actions, rewards and episode endings.\n3. How experiences are collected, stored and sampled.\n4. The network structure, including a clear diagram.\n5. An especially detailed explanation of the Q-learning weight update. Show how predicted values, target values and loss are calculated, and how backpropagation changes weights. Include a small numerical example.\n6. Actual results, readable plots and a comparison table.\n7. Critical evaluation: what the results support, what remains uncertain and practical limitations.\n8. Independently researched concepts, focusing on maximisation bias and Double DQN, with an implemented and evaluated comparison.\n9. Short gameplay videos for the baseline and modified agent, with explanations.\n10. References, contribution statements and the required AI-use record.\n\nUse plain English. Define terms before using them. Explain relevant code blocks alongside the code.\n\nSUBMISSION AND HONESTY\n\n- Follow the brief’s filename convention: CS4287-Assign2_Atari_ID1_ID2_ID3.ipynb, adjusted to the actual team size.\n- Follow its requirement for the first three notebook lines: team names/IDs, execution status, and links to third-party implementations.\n- Ask me for missing team details and actual contributions when needed. Do not invent them or reuse names from another assignment.\n- Keep an AI-use log containing the prompts, a one-line response summary and a one-line explanation of how each response was used. Record this prompt and subsequent interactions. Flag that I must also add earlier assistance from outside this Codex session.\n- Verify references against primary sources.\n- The brief explicitly requires visible notebook outputs and extensive comments. Check both.\n- State execution status accurately. Distinguish a short verification run from completed main training.\n- Do not call the work submission-ready while required details, experiments or outputs remain missing.\n\nWORKING PROCESS\n\nWork through implementation and verification autonomously, making reasonable routine decisions. Give concise updates explaining what changed and why.\n\nExecute the notebook and fix errors within the available resources. If full experiments cannot finish in this session, preserve checkpoints, provide the exact resume instructions and clearly identify the remaining work.\n\nFinish with:\n- The main notebook and supporting results/checkpoints.\n- Reproducible dependency information.\n- A brief account of what was actually run and verified.\n- Any remaining requirements.\n- A short beginner-friendly explanation of the project and questions I should be able to answer in a code inspection.",
+      "response_summary": "Read the brief, inspected the project and hardware, implemented and checked an image-based DQN/Double DQN experiment, and generated an executed teaching notebook with real run artifacts and explicit limitations.",
+      "use": "The generated code, explanations, plots and experiment tooling form this notebook; actual execution and remaining work are recorded in results and the notebook status. The team must understand and critically review this assistance."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "You dont have to do the actual document I just want the notebook part done\n\nC:\\Users\\tyqnn\\PycharmProjects\\PongProject   its now been added here as a docx.",
+      "response_summary": "Confirmed that only a notebook and supporting experiment files would be produced and checked the newly added brief against the identical copy already read.",
+      "use": "No separate report was created; missing team identities and actual contributions remain explicitly unfilled inside the notebook."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Are these files not just meant to be in jupyter notebooks rather than .py files?",
+      "response_summary": "Explained that the notebook was the main submission and scripts were supporting helpers.",
+      "use": "Clarified the existing file structure; the user then requested a notebook-only workflow."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "but should we not just be doing everything in notebooks? Rather than .py files since I have to submit in notebooks?",
+      "response_summary": "Consolidated orchestration, checks and video generation into the notebook and tested it without project Python helper modules.",
+      "use": "The main notebook now supports the complete workflow without importing project .py files."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Now without doing anything is this formatted correctly should the Assignment_2 folder be in the C:\\Users\\tyqnn\\PycharmProjects\\PongProject\n\nOr should all of its content just be in here?",
+      "response_summary": "Explained that the assignment subfolder should remain inside PongProject.",
+      "use": "Clarified folder organisation; no files were changed in that interaction."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Now how do I go about running it and visually seeing it? Tell me simply I want to do it myself step by step",
+      "response_summary": "Provided steps for opening, running, viewing and resuming the notebook.",
+      "use": "Used as manual guidance for the user."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "When I click Crtil+S to Save where does this \"saved\" stuff actually go i dont understand what im doing by running all",
+      "response_summary": "Explained notebook saving, Run All and separate experiment data files.",
+      "use": "Clarified how visible outputs and training records are saved."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Yeah but then when I start new training will I lose this \"Saved\" info ?",
+      "response_summary": "Explained resumed logs versus updated checkpoints and how to copy a backup folder.",
+      "use": "Provided manual backup guidance; no backup was created by that response."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Am I able to see the application at use in its current state?",
+      "response_summary": "Directed the user to saved gameplay videos and explained their training level.",
+      "use": "Used to locate the actual checkpoint demonstrations."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "The videos arent loading they say 0 seconds",
+      "response_summary": "Verified both original recordings and added WebM players and animated GIF fallbacks in the notebook.",
+      "use": "Fixed notebook media compatibility without changing training results."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Ah so at the moment it doesnt actually move were just learning positions kinda?",
+      "response_summary": "Explained that agents already control the paddle and learn action values from images.",
+      "use": "Clarified the current poor policy and how learning works."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "How do I go about training it, do I have to change any cells in the notebook code heavy wise or is it more just changing values like the boolean one earlier or other variables",
+      "response_summary": "Explained the three notebook settings for resuming a bounded batch and regenerating videos.",
+      "use": "Guided the user in continuing the existing matched experiment."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Do you not have to change like learning rate or weights or anything or is this done itself?",
+      "response_summary": "Explained automatic weight updates and the fixed base learning rate.",
+      "use": "Helped preserve shared settings for a fair comparison."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Are these the only 3 setting I have to change 100%? Like the new data and metrics will update after I train this?",
+      "response_summary": "Confirmed the controls and explained that later analysis cells must execute too.",
+      "use": "Guided refreshing results after training."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "How long will it take to train?",
+      "response_summary": "Estimated batch training duration from measured local throughput.",
+      "use": "Helped plan local training time."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "Okay I did it can you just inspect the Assignment 2 folder now and check to see if it looks better after 40k.",
+      "response_summary": "Inspected six completed 40k checkpoints and found slight improvement only in DQN seed 43.",
+      "use": "Established the actual 40k performance baseline without changing results."
+    },
+    {
+      "date": "2026-11-10",
+      "tool": "OpenAI Codex",
+      "prompt": "In C:\\Users\\tyqnn\\PycharmProjects I've made a new folder called PongProjectBackup where I'm storing each run. In this folder just save the assignment after each batch and maybe also have a comparison file/folder that shows new info against old info. Now can you just run the training up until we get a significant improvement on the mean score and save each iteration of training in this new folder.",
+      "response_summary": "Started backed-up equal-budget training batches with comparison records and a declared practical improvement threshold.",
+      "use": "Continues the experiment autonomously while preserving each completed batch; actual outcomes are recorded in the backup comparisons folder."
+    },
+    {
+      "date": "2026-11-12",
+      "tool": "OpenAI Codex",
+      "prompt": "You might have to change something quite major in the project if you can make a change and document what youve changed to try improve the -21 score. As I said create a new file that just saves data with old data against new ones and save them to the folder I made to help show comparisons.",
+      "response_summary": "Implemented and tested a visual-guidance follow-up using a screen-derived interception cue, a dueling-style Q network and a coach margin loss for both methods.",
+      "use": "The notebook documents the actual pilot and matched-seed results, and the backup comparison file places new scores alongside the original run scores."
+    }
+  ]
+}

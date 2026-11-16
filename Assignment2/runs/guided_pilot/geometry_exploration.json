@@ -1,0 +1,134 @@
+[
+  {
+    "contact_x": 139.5,
+    "aim_offset": 0.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8817,
+    "score": -3.0,
+    "decisions": 8000,
+    "complete": false
+  },
+  {
+    "contact_x": 139.5,
+    "aim_offset": 0.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8829,
+    "score": -15.0,
+    "decisions": 4310,
+    "complete": true
+  },
+  {
+    "contact_x": 139.5,
+    "aim_offset": 4.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8817,
+    "score": -12.0,
+    "decisions": 5728,
+    "complete": true
+  },
+  {
+    "contact_x": 139.5,
+    "aim_offset": 4.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8829,
+    "score": -17.0,
+    "decisions": 3443,
+    "complete": true
+  },
+  {
+    "contact_x": 140.5,
+    "aim_offset": 0.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8817,
+    "score": -7.0,
+    "decisions": 7163,
+    "complete": true
+  },
+  {
+    "contact_x": 140.5,
+    "aim_offset": 0.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8829,
+    "score": -19.0,
+    "decisions": 2217,
+    "complete": true
+  },
+  {
+    "contact_x": 140.5,
+    "aim_offset": 5.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8817,
+    "score": -17.0,
+    "decisions": 4095,
+    "complete": true
+  },
+  {
+    "contact_x": 140.5,
+    "aim_offset": 5.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8829,
+    "score": -17.0,
+    "decisions": 3266,
+    "complete": true
+  },
+  {
+    "contact_x": 141.5,
+    "aim_offset": 0.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8817,
+    "score": 7.0,
+    "decisions": 8000,
+    "complete": false
+  },
+  {
+    "contact_x": 141.5,
+    "aim_offset": 0.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8829,
+    "score": -19.0,
+    "decisions": 2229,
+    "complete": true
+  },
+  {
+    "contact_x": 141.5,
+    "aim_offset": 4.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8817,
+    "score": -10.0,
+    "decisions": 6955,
+    "complete": true
+  },
+  {
+    "contact_x": 141.5,
+    "aim_offset": 4.0,
+    "deadzone": 3.0,
+    "wall_low": 34.0,
+    "wall_high": 193.0,
+    "seed": 8829,
+    "score": -15.0,
+    "decisions": 3883,
+    "complete": true
+  }
+]

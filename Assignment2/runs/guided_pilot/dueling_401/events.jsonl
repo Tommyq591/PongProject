@@ -1,0 +1,6 @@
+{"time": "2026-11-12T18:56:18.141941+00:00", "event": "run_started", "planned_steps": 6000, "session_stop": 3000}
+{"time": "2026-11-12T18:56:46.298739+00:00", "event": "checkpoint_saved", "step": 0, "seconds": 0.5921612999518402}
+{"time": "2026-11-12T18:57:41.674351+00:00", "event": "checkpoint_saved", "step": 3000, "seconds": 1.5167201000149362}
+{"time": "2026-11-12T18:57:42.372048+00:00", "event": "run_started", "planned_steps": 6000, "session_stop": 6000}
+{"time": "2026-11-12T18:57:46.293698+00:00", "event": "checkpoint_resumed", "step": 3000}
+{"time": "2026-11-12T18:59:08.999249+00:00", "event": "checkpoint_saved", "step": 6000, "seconds": 2.516533399990294}

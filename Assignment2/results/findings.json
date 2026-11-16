@@ -1,0 +1,18 @@
+{
+  "common_evaluated_horizon": 100000,
+  "planned_steps_per_run": 100000,
+  "completed_main_runs": 6,
+  "planned_runs": 6,
+  "actual_evaluation_games": 210,
+  "actual_training_decisions": 600000,
+  "actual_training_games_logged": 687,
+  "any_truncated_evaluation": false,
+  "all_planned_runs_evaluated": true,
+  "paired_score_difference_double_minus_dqn": 0.033333333333333805,
+  "paired_score_differences_by_seed": {
+    "17": 0.0,
+    "29": 0.0,
+    "43": 0.10000000000000142
+  },
+  "both_methods_reached_threshold": false
+}

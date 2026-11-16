@@ -1,0 +1,9 @@
+{
+  "main_runs_started_at_failure": false,
+  "failed_check": "Initial exact checkpoint recovery assertion failed with ALE native sticky actions enabled; the environment continued differently after reload in a new instance.",
+  "diagnosis": "ALE 0.12.1 stella_environment.cpp stores m_player_a_action outside ALEState; ALEState::save/load does not serialize it. Whether this matters depends on the first sticky action after recovery.",
+  "source": "https://raw.githubusercontent.com/Farama-Foundation/Arcade-Learning-Environment/v0.12.1/src/ale/environment/stella_environment.cpp",
+  "correction": "Set native repeat_action_probability=0.0 and apply the same 0.25 per-frame sticky-action rule in a small Python wrapper. Save its previous action and RNG explicitly. This wrapper is shared by both methods.",
+  "other_early_check": "An AtariPreprocessing import was attempted before the dependency installation finished and raised ModuleNotFoundError for cv2. The completed installation resolved this.",
+  "interpretation": "Exploratory engineering checks, not final performance runs. No failed main result was discarded. Debug and recovery checkpoints are retained under runs/pilot."
+}

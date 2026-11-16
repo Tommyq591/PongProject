@@ -1,0 +1,16 @@
+# Direct dependencies pinned to the actually tested Python 3.12 Windows venv.
+# requirements-lock.txt includes every installed transitive/notebook dependency.
+torch==2.15.0
+gymnasium==1.4.0
+ale-py==0.12.1
+numpy==2.5.4
+opencv-python-headless==5.0.0.93
+matplotlib==3.11.2
+pandas==3.1.1
+nbformat==5.11.1
+nbclient==0.11.0
+ipykernel==7.4.0
+jupyter-client==8.10.0
+imageio==2.38.1
+imageio-ffmpeg==0.8.1
+psutil==7.2.2

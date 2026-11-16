@@ -1,0 +1,9 @@
+{
+  "shared_settings_equal": true,
+  "matched_seed_initial_weights_identical": true,
+  "different_seed_weight_examples": {
+    "17": -0.008219845592975616,
+    "29": -0.04718049615621567,
+    "43": -0.005753964185714722
+  }
+}

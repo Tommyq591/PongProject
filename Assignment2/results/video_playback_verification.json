@@ -1,0 +1,18 @@
+[
+  {
+    "file": "double_dqn_seed_17.webm",
+    "codec": "vp8,",
+    "video_frames": 762,
+    "duration_s": 50.8,
+    "gif_frames": 379,
+    "gif_duration_s": 50.8
+  },
+  {
+    "file": "dqn_seed_17.webm",
+    "codec": "vp8,",
+    "video_frames": 762,
+    "duration_s": 50.8,
+    "gif_frames": 376,
+    "gif_duration_s": 50.8
+  }
+]

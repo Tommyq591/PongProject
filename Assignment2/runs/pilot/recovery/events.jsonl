@@ -1,0 +1,5 @@
+{"time": "2026-11-10T16:26:45.175946+00:00", "event": "checkpoint_saved", "step": 160, "seconds": 0.7392963000456803}
+{"time": "2026-11-10T16:26:48.259431+00:00", "event": "checkpoint_resumed", "step": 160}
+{"time": "2026-11-10T16:30:34.150351+00:00", "event": "checkpoint_saved", "step": 160, "seconds": 0.7985782999894582}
+{"time": "2026-11-10T16:30:38.012175+00:00", "event": "checkpoint_resumed", "step": 160}
+{"time": "2026-11-10T16:30:40.330539+00:00", "event": "checkpoint_saved", "step": 240, "seconds": 0.712596700002905}

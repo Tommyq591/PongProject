@@ -1,0 +1,26 @@
+[
+  {
+    "threads": 1,
+    "measured_decisions": 1000,
+    "measured_updates": 250,
+    "elapsed_s": 16.71360720001394,
+    "decisions_per_s": 59.831488680622215,
+    "note": "Pilot only; includes actual CNN updates and environment stepping."
+  },
+  {
+    "threads": 2,
+    "measured_decisions": 1000,
+    "measured_updates": 250,
+    "elapsed_s": 12.636066899984144,
+    "decisions_per_s": 79.1385490370627,
+    "note": "Pilot only; includes actual CNN updates and environment stepping."
+  },
+  {
+    "threads": 4,
+    "measured_decisions": 1000,
+    "measured_updates": 250,
+    "elapsed_s": 10.291325099999085,
+    "decisions_per_s": 97.16921681932766,
+    "note": "Pilot only; includes actual CNN updates and environment stepping."
+  }
+]

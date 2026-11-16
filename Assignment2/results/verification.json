@@ -1,0 +1,43 @@
+{
+  "target_equations": {
+    "dqn_next_value": 3.0,
+    "double_dqn_next_value": 2.0,
+    "terminal_target": 1.0,
+    "truncation_target": 2.8
+  },
+  "replay": "60 insertions; exact reconstructed stacks after resets and ring overwrite",
+  "learning_update": {
+    "loss": 0.37538591027259827,
+    "mean_q": -0.03411038592457771,
+    "mean_target": 0.2568318545818329,
+    "mean_abs_td_error": 0.7581947445869446,
+    "gradient_norm": 0.5691384077072144
+  },
+  "environment": {
+    "shape": [
+      4,
+      84,
+      84
+    ],
+    "dtype": "uint8",
+    "actions": [
+      "NOOP",
+      "FIRE",
+      "RIGHT",
+      "LEFT",
+      "RIGHTFIRE",
+      "LEFTFIRE"
+    ],
+    "base_frameskip": 1,
+    "wrapper_frameskip": 4,
+    "exact_environment_recovery": true,
+    "external_truncation": true
+  },
+  "full_recovery": {
+    "saved_step": 160,
+    "compared_step": 240,
+    "identical_pixels_rewards_and_weights": true,
+    "updates": 45
+  },
+  "mid_repeat_truncation": "Raw cutoff during action repeat bootstraps from exact final screen"
+}

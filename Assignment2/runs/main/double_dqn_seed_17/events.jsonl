@@ -1,0 +1,21 @@
+{"time": "2026-11-10T16:32:43.748295+00:00", "event": "run_planned", "planned_steps": 100000}
+{"time": "2026-11-10T16:37:05.005664+00:00", "event": "run_started", "planned_steps": 100000, "session_stop": 20000}
+{"time": "2026-11-10T16:37:19.834370+00:00", "event": "checkpoint_saved", "step": 0, "seconds": 0.4484927000012249}
+{"time": "2026-11-10T16:39:07.983110+00:00", "event": "checkpoint_saved", "step": 10000, "seconds": 3.1206698000314645}
+{"time": "2026-11-10T16:41:39.791156+00:00", "event": "checkpoint_saved", "step": 20000, "seconds": 6.285862899967469}
+{"time": "2026-11-10T18:07:37.725795+00:00", "event": "run_started", "planned_steps": 100000, "session_stop": 40000}
+{"time": "2026-11-10T18:07:55.782716+00:00", "event": "checkpoint_resumed", "step": 20000}
+{"time": "2026-11-10T18:11:05.810606+00:00", "event": "checkpoint_saved", "step": 30000, "seconds": 5.102276600024197}
+{"time": "2026-11-10T18:13:03.553635+00:00", "event": "checkpoint_saved", "step": 40000, "seconds": 5.057671200018376}
+{"time": "2026-11-10T18:48:00.333591+00:00", "event": "run_started", "planned_steps": 100000, "session_stop": 60000}
+{"time": "2026-11-10T18:48:12.583259+00:00", "event": "checkpoint_resumed", "step": 40000}
+{"time": "2026-11-10T18:50:12.068225+00:00", "event": "checkpoint_saved", "step": 50000, "seconds": 5.894390300032683}
+{"time": "2026-11-10T18:52:25.105568+00:00", "event": "checkpoint_saved", "step": 60000, "seconds": 5.328937300015241}
+{"time": "2026-11-10T19:09:42.366196+00:00", "event": "run_started", "planned_steps": 100000, "session_stop": 80000}
+{"time": "2026-11-10T19:09:57.850786+00:00", "event": "checkpoint_resumed", "step": 60000}
+{"time": "2026-11-10T19:13:08.259211+00:00", "event": "checkpoint_saved", "step": 70000, "seconds": 5.9357984000234865}
+{"time": "2026-11-10T19:16:43.949258+00:00", "event": "checkpoint_saved", "step": 80000, "seconds": 6.29539509996539}
+{"time": "2026-11-10T19:48:23.450687+00:00", "event": "run_started", "planned_steps": 100000, "session_stop": 100000}
+{"time": "2026-11-10T19:48:35.955474+00:00", "event": "checkpoint_resumed", "step": 80000}
+{"time": "2026-11-10T19:50:57.274379+00:00", "event": "checkpoint_saved", "step": 90000, "seconds": 5.807510199956596}
+{"time": "2026-11-10T19:53:43.975246+00:00", "event": "checkpoint_saved", "step": 100000, "seconds": 5.675321300048381}

@@ -1,0 +1,7 @@
+method,seed,status,trained_steps,latest_evaluation_step,latest_mean_score,within_run_game_sd,evaluation_games,mean_episode_decisions,training_seconds_to_latest_evaluation,auc_to_common_horizon,first_nonlosing_step,main_budget_complete
+dqn,17,complete,100000,100000,-21.0,0.0,10,802.5,1144.232473999844,-21.0,,True
+double_dqn,17,complete,100000,100000,-21.0,0.0,10,760.1,1396.4903467997792,-20.96,,True
+dqn,29,complete,100000,100000,-21.0,0.0,10,760.2,1234.3722305996926,-21.0,,True
+double_dqn,29,complete,100000,100000,-21.0,0.0,10,760.2,165155.84260609996,-21.0,,True
+dqn,43,complete,100000,100000,-21.0,0.0,10,776.7,1091.5865740005975,-20.84,,True
+double_dqn,43,complete,100000,100000,-20.9,0.31622776601683794,10,834.1,1256.379291399906,-20.95,,True
