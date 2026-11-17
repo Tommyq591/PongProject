@@ -1,0 +1,3 @@
+# Extra package needed only to build the write-up PDF (on top of Assignment2/requirements.txt,
+# which provides matplotlib for the diagrams and the DejaVu fonts).
+reportlab==5.1.0

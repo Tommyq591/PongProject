@@ -7,7 +7,8 @@ The table compares three configurations:
 - **CleanRL:** the reference implementation `dqn_atari.py` with its default arguments.
   - Docs: https://docs.cleanrl.dev/rl-algorithms/dqn/#dqn_ataripy
   - Code: https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
-  - It reports **20.25 ± 0.41** on PongNoFrameskip-v4 after 10M steps.
+  - It reports **20.25 ± 0.41** on PongNoFrameskip-v4, in the docs' results table under the column "`dqn_atari.py` 10M steps". Checked against the docs page on 17 Nov 2026. The page also says 10M timesteps = 40M frames because of frame skipping.
+  - The CleanRL page doesn't mention sticky actions. The "none" below comes from the environment version: the `-v4` Atari environments use `repeat_action_probability = 0` by default, while `-v5` uses 0.25 (ALE/Gymnasium docs).
 
 Config A changes **only bolded rows**, and it applies them identically to DQN and Double DQN.
 
@@ -29,7 +30,7 @@ Config A changes **only bolded rows**, and it applies them identically to DQN an
 | loss | Huber (smooth L1) | Huber | MSE | kept (Huber = Nature DQN error clipping) |
 | max_grad_norm | 10 | 10 | none | kept (never reached in practice) |
 | env_id | ALE/Pong-v5 | ALE/Pong-v5 | PongNoFrameskip-v4 | kept (modern standard) |
-| sticky actions | p = 0.25, training AND evaluation | 0.25 | none | kept: harder but fairer protocol, same for both methods |
+| sticky actions | p = 0.25, training AND evaluation | 0.25 | none (v4 default) | kept: harder but fairer protocol, same for both methods |
 | frame_skip / screen / stack | 4 (max-pool) / 84×84 grey / 4 | same | 4 / 84×84 / 4 | same |
 | noop_max | 30 | 30 | 30 | same |
 | reward clipping | sign(r) | sign(r) | sign(r) | same |

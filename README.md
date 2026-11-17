@@ -14,7 +14,7 @@
 | folder | contents |
 |---|---|
 | [`Assignment2/`](Assignment2/) | **The submission notebook** and everything it reads (`runs/`, `results/`, `videos/`, plan files). **Don't move or rename anything in here.** |
-| [`submission/`](submission/) | What we hand in (just the notebook), the filename rule and a placeholder for a summary PDF *only if confirmed required*. |
+| [`submission/`](submission/) | `actual_submission/`: the 2 files we upload (the notebook and the PDF write-up). `writeup_source/`: how the PDF is built (text, figures, build script). |
 | [`docs/`](docs/) | The assignment brief (.docx), [SETUP](docs/SETUP.md), [WHAT_WE_DID](docs/WHAT_WE_DID.md) (the story so far), [CONFIG_A](docs/CONFIG_A.md) (all settings compared), [NEXT_STEPS](docs/NEXT_STEPS.md) and [AI_USE_LOG](docs/AI_USE_LOG.md). |
 | [`models/`](models/) | Trained policies, e.g. `dqn_configA_seed17_5.0M.pt`, with a table of their scores and the command to watch each one. |
 | [`results/`](results/) | Graphs (learning curve, old vs new settings), score tables, behaviour analyses and GPU speed results. |
