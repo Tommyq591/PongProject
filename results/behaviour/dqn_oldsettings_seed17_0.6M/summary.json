@@ -1,0 +1,126 @@
+{
+  "agent": "dqn_seed17_600k",
+  "policy": "models/dqn_oldsettings_seed17_0.6M.pt",
+  "decisions": 936,
+  "games": [
+    [
+      1,
+      21
+    ]
+  ],
+  "ram_check": {
+    "ball_median_err_px": 0.27599999999999625,
+    "ball_p95_err_px": 0.777199999999992,
+    "paddle_median_err_px": 1.4339999999999975,
+    "paddle_p95_err_px": 3.9739999999999966
+  },
+  "paddle_position": {
+    "ball moving away": {
+      "n": 107,
+      "top_third": 0.1588785046728972,
+      "middle_third": 0.19626168224299065,
+      "bottom_third": 0.6448598130841121,
+      "median_y": 172.506
+    },
+    "ball moving towards us": {
+      "n": 470,
+      "top_third": 0.10212765957446808,
+      "middle_third": 0.12340425531914893,
+      "bottom_third": 0.774468085106383,
+      "median_y": 173.45399999999998
+    },
+    "no ball in play": {
+      "n": 357,
+      "top_third": 0.0896358543417367,
+      "middle_third": 0.11764705882352941,
+      "bottom_third": 0.7927170868347339,
+      "median_y": 186.726
+    }
+  },
+  "paddle_range_seen": [
+    35.994,
+    192.414
+  ],
+  "action_share": {
+    "NOOP": 0.17414529914529914,
+    "FIRE": 0.10042735042735043,
+    "RIGHT": 0.16132478632478633,
+    "LEFT": 0.04700854700854701,
+    "RIGHTFIRE": 0.06837606837606838,
+    "LEFTFIRE": 0.44871794871794873
+  },
+  "action_share_by_context": {
+    "ball moving away": {
+      "up": 0.102803738317757,
+      "down": 0.38317757009345793,
+      "stay": 0.514018691588785
+    },
+    "ball moving towards us": {
+      "up": 0.33617021276595743,
+      "down": 0.4297872340425532,
+      "stay": 0.23404255319148937
+    },
+    "no ball in play": {
+      "up": 0.12885154061624648,
+      "down": 0.6162464985994398,
+      "stay": 0.2549019607843137
+    }
+  },
+  "random_actions": 13,
+  "approaches": {
+    "n": 26,
+    "lost_after_approach": 21,
+    "decisions_for_paddle_to_cross_court": 7,
+    "paddle_max_px_in_1_decision": 22.75200000000001,
+    "mean_decisions_ball_takes_to_arrive": 14.576923076923077,
+    "reachable_from_where_paddle_was": 0.9615384615384616,
+    "reachable_if_paddle_had_started_mid_court": 1.0,
+    "lost_points_reachable_from_paddle": 0.9523809523809523,
+    "lost_points_reachable_from_mid": 1.0,
+    "lost_points_miss_px_median": 97.77999999999999,
+    "lost_points_paddle_start_bottom_third": 0.9047619047619048,
+    "lost_points_arrival_top_half": 0.9047619047619048
+  },
+  "tracking": {
+    "corr_paddle_y_ball_y_all_visible": 0.28238919814711017,
+    "corr_paddle_y_ball_y_when_ball_approaching": 0.36038327975499707,
+    "moves_towards_current_ball_y_share": 0.475,
+    "corr_Q_down_minus_up_vs_ball_below_now": 0.04718543361192411,
+    "corr_Q_down_minus_up_vs_arrival_below": 0.12572004032285342,
+    "first_half_of_approach_moving_towards_arrival_share": 0.24025974025974026,
+    "first_correct_move_fraction_of_approach_median": 0.2857142857142857,
+    "conflict_moves_n": 0,
+    "conflict_moves_follow_current_ball": null,
+    "conflict_moves_head_to_arrival": null
+  },
+  "value": {
+    "median_max_q": -0.6935326457023621,
+    "max_q_range": [
+      -1.9036916494369507,
+      0.4384087026119232
+    ],
+    "lost_points_used": 21,
+    "won_points_used": 1,
+    "mean_max_q_before_lost_point": {
+      "-40": -0.6423421978950501,
+      "-30": -0.5945353124822889,
+      "-20": -0.6163653291407085,
+      "-15": -0.7968561734472003,
+      "-10": -1.0358861486117046,
+      "-5": -1.1489265986851283,
+      "-2": -1.3881631181353615,
+      "0": -1.411578621183123
+    },
+    "mean_max_q_before_won_point": {
+      "-40": -1.2082127332687378,
+      "-30": -0.7633835673332214,
+      "-20": -0.45930713415145874,
+      "-15": -0.7273015379905701,
+      "-10": -0.29636451601982117,
+      "-5": -0.02558448165655136,
+      "-2": 0.4384087026119232,
+      "0": 0.2706742584705353
+    },
+    "lost_points_half_drop_decisions_before": 10
+  }
+}

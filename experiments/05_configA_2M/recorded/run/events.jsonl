@@ -1,0 +1,22 @@
+{"time": "2026-11-16T19:29:03.519844+00:00", "event": "run_started", "planned_steps": 2000000, "session_stop": 2000000}
+{"time": "2026-11-16T19:29:09.033920+00:00", "event": "checkpoint_saved", "step": 0, "seconds": 0.4733238999979221, "format": "fast_npy_replay"}
+{"time": "2026-11-16T19:32:42.193655+00:00", "event": "checkpoint_saved", "step": 100000, "seconds": 1.5824796999986575, "format": "fast_npy_replay"}
+{"time": "2026-11-16T19:37:20.109149+00:00", "event": "checkpoint_saved", "step": 200000, "seconds": 9.855227099997137, "format": "fast_npy_replay"}
+{"time": "2026-11-16T19:42:13.242283+00:00", "event": "checkpoint_saved", "step": 300000, "seconds": 20.935471699998743, "format": "fast_npy_replay"}
+{"time": "2026-11-16T19:47:06.115610+00:00", "event": "checkpoint_saved", "step": 400000, "seconds": 24.081200399999943, "format": "fast_npy_replay"}
+{"time": "2026-11-16T19:51:49.573546+00:00", "event": "checkpoint_saved", "step": 500000, "seconds": 14.444904200001474, "format": "fast_npy_replay"}
+{"time": "2026-11-16T19:56:37.169966+00:00", "event": "checkpoint_saved", "step": 600000, "seconds": 17.266860600000655, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:01:28.108722+00:00", "event": "checkpoint_saved", "step": 700000, "seconds": 16.94824690000314, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:06:22.261432+00:00", "event": "checkpoint_saved", "step": 800000, "seconds": 20.014129400002275, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:11:17.716644+00:00", "event": "checkpoint_saved", "step": 900000, "seconds": 21.912102199999936, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:16:14.708902+00:00", "event": "checkpoint_saved", "step": 1000000, "seconds": 21.1867917999989, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:21:02.692994+00:00", "event": "checkpoint_saved", "step": 1100000, "seconds": 14.3168259999984, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:25:53.512693+00:00", "event": "checkpoint_saved", "step": 1200000, "seconds": 15.481475399999908, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:30:45.451055+00:00", "event": "checkpoint_saved", "step": 1300000, "seconds": 17.683592299999873, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:35:40.820566+00:00", "event": "checkpoint_saved", "step": 1400000, "seconds": 20.808582300000126, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:40:32.977805+00:00", "event": "checkpoint_saved", "step": 1500000, "seconds": 18.535112800000206, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:45:27.963025+00:00", "event": "checkpoint_saved", "step": 1600000, "seconds": 19.81330839999646, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:50:19.032612+00:00", "event": "checkpoint_saved", "step": 1700000, "seconds": 19.705861999998888, "format": "fast_npy_replay"}
+{"time": "2026-11-16T20:55:16.615439+00:00", "event": "checkpoint_saved", "step": 1800000, "seconds": 20.9218856999978, "format": "fast_npy_replay"}
+{"time": "2026-11-16T21:00:09.535504+00:00", "event": "checkpoint_saved", "step": 1900000, "seconds": 17.02166700000089, "format": "fast_npy_replay"}
+{"time": "2026-11-16T21:05:14.338812+00:00", "event": "checkpoint_saved", "step": 2000000, "seconds": 15.87651900000128, "format": "fast_npy_replay"}

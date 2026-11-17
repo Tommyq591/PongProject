@@ -1,0 +1,6 @@
+﻿Previous Windows sleep settings (AC), recorded 2026-11-16T19:28:58 before launching run A:
+  standby-timeout-ac   = 0x4650 = 18000 s = 300 minutes
+  hibernate-timeout-ac = 0x0 = never
+Restore with:
+  powercfg /change standby-timeout-ac 300
+  powercfg /change hibernate-timeout-ac 0

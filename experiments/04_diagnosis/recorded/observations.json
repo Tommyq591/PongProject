@@ -1,0 +1,69 @@
+{
+  "dtype": "uint8",
+  "shape": [
+    4,
+    84,
+    84
+  ],
+  "ball_contrast": [
+    {
+      "t": 74,
+      "ball_raw_yx": [
+        53.5,
+        141.5
+      ],
+      "ball_obs_yx": [
+        21,
+        74
+      ],
+      "ball_max_grey": 232,
+      "background_grey": 87,
+      "ball_pixels_above_bg+30": 5
+    },
+    {
+      "t": 333,
+      "ball_raw_yx": [
+        123.5,
+        71.5
+      ],
+      "ball_obs_yx": [
+        49,
+        38
+      ],
+      "ball_max_grey": 214,
+      "background_grey": 87,
+      "ball_pixels_above_bg+30": 5
+    },
+    {
+      "t": 370,
+      "ball_raw_yx": [
+        80.5,
+        115.5
+      ],
+      "ball_obs_yx": [
+        32,
+        61
+      ],
+      "ball_max_grey": 227,
+      "background_grey": 87,
+      "ball_pixels_above_bg+30": 3
+    }
+  ],
+  "abs_diff_between_consecutive_frames": [
+    [
+      2620,
+      1616,
+      1817
+    ],
+    [
+      2827,
+      1629,
+      1327
+    ],
+    [
+      2103,
+      2102,
+      3107
+    ]
+  ]
+}

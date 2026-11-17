@@ -1,3 +1,5 @@
+> **SUBMISSION NOTEBOOK — do not move.** This notebook needs `runs/`, `results/`, `videos/` and the plan files beside it, and the folder name `Assignment2`. Repo overview: [../README.md](../README.md).
+
 # Work entirely in the Jupyter notebook
 
 Open CS4287-Assign2_Atari_ID1_ID2_ID3.ipynb with the PongProject .venv kernel.

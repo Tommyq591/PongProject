@@ -1,0 +1,64 @@
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+{
+ "run": "dqn_seed17_cuda_r200k",
+ "method": "dqn",
+ "seed": 17,
+ "device": "cuda",
+ "total_decisions": 12000,
+ "learning_starts": 2000,
+ "replay_capacity": 200000,
+ "torch_threads": 4,
+ "pre_learning_s": 1.3452239999996891,
+ "pre_learning_decisions_per_s": 1486.7412416076893,
+ "measured_decisions_after_learning_starts": 10000,
+ "measured_updates": 2500,
+ "measured_s": 20.79622399999971,
+ "decisions_per_s_after_learning_starts": 480.8565247229564,
+ "per_1000_chunk_decisions_per_s": [
+  469.4,
+  475.9,
+  500.7,
+  513.9,
+  502.7,
+  458.9,
+  457.7,
+  472.3,
+  478.6,
+  485.0
+ ],
+ "epsilon_at_end": 0.8575,
+ "greedy_action_latency_ms": 0.6705996000000596,
+ "peak_gpu_memory_allocated_mib": 46.71044921875,
+ "peak_gpu_memory_reserved_mib": 58.0,
+ "peak_process_rss_mib_sampled": 3270.51171875,
+ "peak_process_working_set_mib_windows": 3271.0546875,
+ "gpu_util_samples_in_window": 81,
+ "gpu_util_mean_pct": 15.901234567901234,
+ "gpu_util_max_pct": 18.0,
+ "gpu_mem_used_total_mib_max": 284.0,
+ "gpu_sampler_error": null,
+ "checkpoint_save": null,
+ "env": {
+  "CUBLAS_WORKSPACE_CONFIG": null
+ }
+}
+nanobind: leaked 1 instances!
+ - leaked instance 0000019683CE03C8 of type "ale_py._ale_py.ALEInterface"
+nanobind: leaked 2 types!
+ - leaked type "Action"
+ - leaked type "ale_py._ale_py.ALEInterface"
+nanobind: leaked 39 functions!
+ - leaked function "isSupportedROM"
+ - leaked function "cloneState"
+ - leaked function "getRAM"
+ - leaked function "setInt"
+ - leaked function "cloneSystemState"
+ - leaked function "__init__"
+ - leaked function "game_truncated"
+ - leaked function "getScreenRGB"
+ - leaked function "setMode"
+ - leaked function "setBool"
+ - ... skipped remainder
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.html

@@ -1,0 +1,134 @@
+{
+  "agent": "dqn_seed17_600k",
+  "policy": "C:\\CG_Files\\PC _4th_Year_Autumn\\1) Neural Computing - CS4287\\Project_2\\Tommy_GitHub\\gpu_scratch\\pilot_1M\\run\\policy.pt",
+  "decisions": 3452,
+  "games": [
+    [
+      1,
+      21
+    ],
+    [
+      0,
+      21
+    ],
+    [
+      1,
+      21
+    ]
+  ],
+  "ram_check": {
+    "ball_median_err_px": 0.27599999999999625,
+    "ball_p95_err_px": 1.4380000000000024,
+    "paddle_median_err_px": 1.122000000000014,
+    "paddle_p95_err_px": 3.8380000000000223
+  },
+  "paddle_position": {
+    "ball moving away": {
+      "n": 646,
+      "top_third": 0.2801857585139319,
+      "middle_third": 0.15015479876160992,
+      "bottom_third": 0.5696594427244582,
+      "median_y": 170.13599999999997
+    },
+    "ball moving towards us": {
+      "n": 1759,
+      "top_third": 0.11085844229675952,
+      "middle_third": 0.17111995451961343,
+      "bottom_third": 0.7180216031836271,
+      "median_y": 171.558
+    },
+    "no ball in play": {
+      "n": 1041,
+      "top_third": 0.14505283381364073,
+      "middle_third": 0.24111431316042267,
+      "bottom_third": 0.6138328530259366,
+      "median_y": 160.182
+    }
+  },
+  "paddle_range_seen": [
+    35.994,
+    192.414
+  ],
+  "action_share": {
+    "NOOP": 0.20654692931633836,
+    "FIRE": 0.12282734646581692,
+    "RIGHT": 0.17641946697566627,
+    "LEFT": 0.06691772885283893,
+    "RIGHTFIRE": 0.07213209733487833,
+    "LEFTFIRE": 0.3551564310544612
+  },
+  "action_share_by_context": {
+    "ball moving away": {
+      "up": 0.14860681114551083,
+      "down": 0.34520123839009287,
+      "stay": 0.5061919504643962
+    },
+    "ball moving towards us": {
+      "up": 0.3649801023308698,
+      "down": 0.4229675952245594,
+      "stay": 0.21205230244457077
+    },
+    "no ball in play": {
+      "up": 0.11527377521613832,
+      "down": 0.4668587896253602,
+      "stay": 0.41786743515850144
+    }
+  },
+  "random_actions": 48,
+  "approaches": {
+    "n": 90,
+    "lost_after_approach": 63,
+    "decisions_for_paddle_to_cross_court": 7,
+    "paddle_max_px_in_1_decision": 22.75200000000001,
+    "mean_decisions_ball_takes_to_arrive": 16.344444444444445,
+    "reachable_from_where_paddle_was": 0.9888888888888889,
+    "reachable_if_paddle_had_started_mid_court": 1.0,
+    "lost_points_reachable_from_paddle": 0.9841269841269841,
+    "lost_points_reachable_from_mid": 1.0,
+    "lost_points_miss_px_median": 74.00599999999999,
+    "lost_points_paddle_start_bottom_third": 0.873015873015873,
+    "lost_points_arrival_top_half": 0.8095238095238095
+  },
+  "tracking": {
+    "corr_paddle_y_ball_y_all_visible": 0.4566115421344575,
+    "corr_paddle_y_ball_y_when_ball_approaching": 0.4043770574257331,
+    "moves_towards_current_ball_y_share": 0.5083487940630798,
+    "corr_Q_down_minus_up_vs_ball_below_now": 0.1435002858340093,
+    "corr_Q_down_minus_up_vs_arrival_below": 0.21109489501953954,
+    "first_half_of_approach_moving_towards_arrival_share": 0.28115015974440893,
+    "first_correct_move_fraction_of_approach_median": 0.23076923076923078,
+    "conflict_moves_n": 39,
+    "conflict_moves_follow_current_ball": 0.23076923076923078,
+    "conflict_moves_head_to_arrival": 0.7692307692307693
+  },
+  "value": {
+    "median_max_q": -0.6987614333629608,
+    "max_q_range": [
+      -1.9036916494369507,
+      0.5311304926872253
+    ],
+    "lost_points_used": 63,
+    "won_points_used": 2,
+    "mean_max_q_before_lost_point": {
+      "-40": -0.6169314143749384,
+      "-30": -0.6241560639843108,
+      "-20": -0.6713274802480426,
+      "-15": -0.8471186643555051,
+      "-10": -1.0812423446821788,
+      "-5": -1.1947744006202334,
+      "-2": -1.4004515768989685,
+      "0": -1.3071980041170876
+    },
+    "mean_max_q_before_won_point": {
+      "-40": -1.0948785841464996,
+      "-30": -0.723793238401413,
+      "-20": -0.4436040073633194,
+      "-15": -0.680171936750412,
+      "-10": -0.35635456442832947,
+      "-5": -0.010112792253494263,
+      "-2": 0.3381139785051346,
+      "0": 0.3075353503227234
+    },
+    "lost_points_half_drop_decisions_before": 12
+  }
+}
