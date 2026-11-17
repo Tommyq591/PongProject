@@ -4,3 +4,16 @@ __pycache__/
 .ipynb_checkpoints/
 .jupyter/
 .matplotlib/
+
+# --- large training artefacts (never commit) ---
+*.npy
+checkpoint.pt.gz
+checkpoint.tmp.gz
+replay/
+replay.tmp/
+replay.old/
+# ...except the submission's existing small checkpoints, which the notebook needs
+!/Assignment2/**/checkpoint.pt.gz
+# re-run outputs of experiment scripts and demos
+experiments/*/output/
+demos/explain_output/
