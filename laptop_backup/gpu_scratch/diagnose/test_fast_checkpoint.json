@@ -1,0 +1,17 @@
+{
+  "exact_recovery_small_dqn": true,
+  "exact_recovery_small_double_dqn": true,
+  "exact_recovery_nature_dqn": true,
+  "exact_recovery_nature_double_dqn": true,
+  "ram_100k": {
+    "fill_s": 85.56220250000115,
+    "rss_before_save_gib": 2.4057273864746094,
+    "peak_rss_during_save_gib": 2.405834197998047,
+    "extra_during_save_gib": 0.0001068115234375,
+    "save_s": 1.1235641000021133,
+    "load_s": 1.4361902000018745,
+    "checkpoint_on_disk_gib": 1.321581601165235,
+    "reloaded_replay_identical": true,
+    "notebook_save_peak_gib_for_comparison": 8.25
+  }
+}

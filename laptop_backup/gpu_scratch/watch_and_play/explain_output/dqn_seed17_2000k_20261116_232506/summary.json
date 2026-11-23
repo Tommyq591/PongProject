@@ -1,0 +1,126 @@
+{
+  "agent": "dqn_seed17_2000k",
+  "policy": "C:\\CG_Files\\PC _4th_Year_Autumn\\1) Neural Computing - CS4287\\Project_2\\Tommy_GitHub\\gpu_scratch\\diagnose\\runs\\A_dqn_s17_2M\\policy_2000k.pt",
+  "decisions": 2743,
+  "games": [
+    [
+      14,
+      21
+    ]
+  ],
+  "ram_check": {
+    "ball_median_err_px": 0.24600000000000932,
+    "ball_p95_err_px": 0.7682857142857082,
+    "paddle_median_err_px": 1.2339999999999947,
+    "paddle_p95_err_px": 3.5660000000000025
+  },
+  "paddle_position": {
+    "ball moving away": {
+      "n": 895,
+      "top_third": 0.17988826815642459,
+      "middle_third": 0.3027932960893855,
+      "bottom_third": 0.5173184357541899,
+      "median_y": 143.118
+    },
+    "ball moving towards us": {
+      "n": 1256,
+      "top_third": 0.33996815286624205,
+      "middle_third": 0.3049363057324841,
+      "bottom_third": 0.35509554140127386,
+      "median_y": 118.47
+    },
+    "no ball in play": {
+      "n": 583,
+      "top_third": 0.4305317324185249,
+      "middle_third": 0.19725557461406518,
+      "bottom_third": 0.37221269296740994,
+      "median_y": 106.14599999999999
+    }
+  },
+  "paddle_range_seen": [
+    35.994,
+    192.414
+  ],
+  "action_share": {
+    "NOOP": 0.12468100619759387,
+    "FIRE": 0.2839956252278527,
+    "RIGHT": 0.16879329201604082,
+    "LEFT": 0.11957710535909588,
+    "RIGHTFIRE": 0.1017134524243529,
+    "LEFTFIRE": 0.2012395187750638
+  },
+  "action_share_by_context": {
+    "ball moving away": {
+      "up": 0.24581005586592178,
+      "down": 0.39776536312849164,
+      "stay": 0.3564245810055866
+    },
+    "ball moving towards us": {
+      "up": 0.3232484076433121,
+      "down": 0.3001592356687898,
+      "stay": 0.3765923566878981
+    },
+    "no ball in play": {
+      "up": 0.1955403087478559,
+      "down": 0.24871355060034306,
+      "stay": 0.5557461406518011
+    }
+  },
+  "random_actions": 31,
+  "approaches": {
+    "n": 65,
+    "lost_after_approach": 21,
+    "decisions_for_paddle_to_cross_court": 8,
+    "paddle_max_px_in_1_decision": 22.75200000000001,
+    "mean_decisions_ball_takes_to_arrive": 18.06153846153846,
+    "reachable_from_where_paddle_was": 1.0,
+    "reachable_if_paddle_had_started_mid_court": 1.0,
+    "lost_points_reachable_from_paddle": 1.0,
+    "lost_points_reachable_from_mid": 1.0,
+    "lost_points_miss_px_median": 33.14999999999999,
+    "lost_points_paddle_start_bottom_third": 0.23809523809523808,
+    "lost_points_arrival_top_half": 0.7142857142857143
+  },
+  "tracking": {
+    "corr_paddle_y_ball_y_all_visible": 0.4726334991094434,
+    "corr_paddle_y_ball_y_when_ball_approaching": 0.4695996751818692,
+    "moves_towards_current_ball_y_share": 0.5263157894736842,
+    "corr_Q_down_minus_up_vs_ball_below_now": 0.10934827685964377,
+    "corr_Q_down_minus_up_vs_arrival_below": 0.17798963545908336,
+    "first_half_of_approach_moving_towards_arrival_share": 0.3326133909287257,
+    "first_correct_move_fraction_of_approach_median": 0.07142857142857142,
+    "conflict_moves_n": 106,
+    "conflict_moves_follow_current_ball": 0.32075471698113206,
+    "conflict_moves_head_to_arrival": 0.6792452830188679
+  },
+  "value": {
+    "median_max_q": 0.5958632826805115,
+    "max_q_range": [
+      -1.153981328010559,
+      2.0121216773986816
+    ],
+    "lost_points_used": 21,
+    "won_points_used": 14,
+    "mean_max_q_before_lost_point": {
+      "-40": 0.41009495267644525,
+      "-30": 0.4586709411371322,
+      "-20": 0.44854527711868286,
+      "-15": 0.3494558807994638,
+      "-10": 0.21853666983190037,
+      "-5": 0.1069917135118019,
+      "-2": -0.1728573516011238,
+      "0": -0.2384915596672467
+    },
+    "mean_max_q_before_won_point": {
+      "-40": 0.6664931667702538,
+      "-30": 0.7334176450967789,
+      "-20": 0.8555682099291256,
+      "-15": 1.189338696854455,
+      "-10": 1.3155484284673418,
+      "-5": 1.4104174673557281,
+      "-2": 1.436888805457524,
+      "0": 1.6622091787202018
+    },
+    "lost_points_half_drop_decisions_before": 5
+  }
+}

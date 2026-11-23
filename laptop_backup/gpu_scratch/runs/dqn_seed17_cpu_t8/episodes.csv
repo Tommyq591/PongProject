@@ -1,0 +1,4 @@
+step,episode,score,length,terminated,truncated,train_elapsed_s,game_frames
+934,0,-21.0,934,True,False,0.41069139999945037,3735
+2087,1,-19.0,1153,True,False,1.7468147999989014,8344
+2908,2,-21.0,821,True,False,4.014092899999014,11628

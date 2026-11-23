@@ -1,0 +1,46 @@
+{
+  "input_scaled_by_255": {
+    "pass": true,
+    "info": "forward() = network(x / 255); uint8 in, float in [0,1] used"
+  },
+  "frame_stack_order_real_env": {
+    "pass": true,
+    "info": "obs[t][0:3] == obs[t-1][1:4] for 300 real steps; obs[3] is the newest frame"
+  },
+  "replay_reconstructs_real_transitions_exactly": {
+    "pass": true,
+    "info": "1500 real steps, ring of 257, episodes of 90: every sampled (s, s') identical to what the env produced"
+  },
+  "dqn_target_uses_target_network_max_and_terminal_mask": {
+    "pass": true,
+    "info": "target = r + 0.99*(1-terminated)*max_a target(s',a); online net NOT used; truncation bootstraps"
+  },
+  "double_dqn_target_online_selects_target_evaluates": {
+    "pass": true,
+    "info": "target = r + 0.99*(1-terminated)*Q_target(s', argmax_a Q_online(s',a))"
+  },
+  "loss_is_huber_grad_clipped_adam_updates_online_only": {
+    "pass": true,
+    "info": "loss = smooth_l1 (Huber, beta 1) = 0.24820 (MSE would be 0.49645); clip_grad_norm 10.0; Adam lr 0.0001; target untouched"
+  },
+  "target_sync_train_frequency_learning_starts": {
+    "pass": true,
+    "info": "first update at step learning_starts; then 1 update per train_frequency decisions; hard target copy every target_update_interval decisions"
+  },
+  "epsilon_schedule": {
+    "pass": true,
+    "info": "linear 1.0 -> 0.05 over 80,000 decisions, then flat: {0: 1.0, 40000: 0.525, 80000: 0.05, 600000: 0.05}"
+  },
+  "action_mapping_up_down": {
+    "pass": true,
+    "info": "paddle RAM-y change after 4 decisions (negative = up): {'NOOP': 0, 'FIRE': 0, 'RIGHT': -67, 'LEFT': 75, 'RIGHTFIRE': -67, 'LEFTFIRE': 75}"
+  },
+  "sticky_actions_train_and_eval": {
+    "pass": true,
+    "info": "p=0.25 per raw frame (empirical 0.251), ALE's own stickiness 0; evaluate() uses PongEnv(config) -> also sticky 0.25"
+  },
+  "reward_clipping": {
+    "pass": true,
+    "info": "replay stores sign(reward) in {-1,0,+1}; raw reward kept only for episode logging"
+  }
+}

@@ -1,0 +1,8 @@
+{"time": "2026-11-16T17:27:54.772350+00:00", "event": "run_started", "planned_steps": 1000000, "session_stop": 1000000}
+{"time": "2026-11-16T17:27:59.641048+00:00", "event": "checkpoint_saved", "step": 0, "seconds": 0.12659619999976712}
+{"time": "2026-11-16T17:32:11.892773+00:00", "event": "checkpoint_saved", "step": 100000, "seconds": 7.746330200001466}
+{"time": "2026-11-16T17:36:54.489686+00:00", "event": "checkpoint_saved", "step": 200000, "seconds": 7.0377322000003915}
+{"time": "2026-11-16T17:41:37.744815+00:00", "event": "checkpoint_saved", "step": 300000, "seconds": 6.300863599999502}
+{"time": "2026-11-16T17:46:18.748490+00:00", "event": "checkpoint_saved", "step": 400000, "seconds": 6.204185900000084}
+{"time": "2026-11-16T17:50:56.285210+00:00", "event": "checkpoint_saved", "step": 500000, "seconds": 6.264525099999446}
+{"time": "2026-11-16T17:55:37.213021+00:00", "event": "checkpoint_saved", "step": 600000, "seconds": 6.676123199998983}

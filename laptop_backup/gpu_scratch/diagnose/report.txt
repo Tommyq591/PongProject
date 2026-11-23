@@ -1,0 +1,203 @@
+DIAGNOSIS - why our Pong DQN learns slowly                                    2026-11-16
+==========================================================================================
+Scope: analysis only. PongProject and gpu_scratch\pilot_1M were only read. No training
+longer than ~2 minutes was run (unit tests + 8k-decision throughput benchmarks).
+Everything is in gpu_scratch\diagnose\.
+
+VERDICT IN ONE LINE
+  No learning bug found. The code is a correct DQN/Double DQN; the agent is simply very early
+  in training (700k decisions = 7% of the reference's 10M budget) and uses a ~4x smaller
+  network on the harder sticky-action version of Pong. One real bug WAS found, but it only
+  affects resuming GPU runs (Trainer.load on cuda), not learning.
+
+------------------------------------------------------------------------------------------
+1. CORRECTNESS CHECK OF THE TRAINING CODE  (test_core.py: 11/11 pass; obs_images.py)
+------------------------------------------------------------------------------------------
+What the network sees  (observations.png, observations.json)
+  - uint8 4x84x84 stacks of greyscale frames, 4-frame skip with max-pooling of the last two
+    raw frames (Gymnasium AtariPreprocessing), resized with INTER_AREA.
+  - Ball clearly visible after resize/greyscale: peak grey 214-232 on background 87, 3-5
+    pixels above background. Paddles and walls visible.
+  - Frame order correct: obs[0] oldest ... obs[3] newest. Verified on 300 real steps
+    (obs[t][0:3] == obs[t-1][1:4]); ball moves monotonically across the stack in the images.
+  - Input scaled /255 inside QNetwork.forward (test: output == net(x.float()/255)).
+Replay buffer (the most unusual part: stores 2 frames per transition and rebuilds stacks)
+  - Test on 1,500 REAL gameplay steps, ring of 257 slots, forced episode ends every 90 steps:
+    every sampled (state, next_state, terminated, truncated) is byte-identical to what the
+    environment produced, across resets and ring wrap-around.
+Q-learning target
+  - DQN: y = r + 0.99*(1-terminated)*max_a Q_target(s',a). Test with different online/target
+    nets confirms the TARGET net is used (not the online net).
+  - Double DQN: y = r + 0.99*(1-terminated)*Q_target(s', argmax_a Q_online(s',a)). Correct.
+  - Terminal mask uses `terminated` only; time-limit truncation bootstraps (correct).
+Loss / optimiser / schedule
+  - Loss = smooth L1 (Huber, beta 1) - test confirms (Huber 0.248 vs MSE 0.496 on same batch).
+  - Gradient-norm clipping at 10 (never reached in the pilot: max ~1, typical 0.2).
+  - Adam, lr 1e-4, only online parameters. Target net untouched by the optimiser.
+  - Hard target copy every 2,000 decisions (test: equal right after sync, differs between).
+  - First update exactly at learning_starts (2,000), then one update per 4 decisions.
+  - Epsilon linear 1.0 -> 0.05 over 80,000 decisions, then flat at 0.05.
+  - Rewards clipped to sign(r) for learning; raw scores used for reporting.
+Action mapping (RAM byte 51 = our paddle y)
+  - RIGHT, RIGHTFIRE move UP (-67 RAM units over 4 decisions); LEFT, LEFTFIRE move DOWN (+75);
+    NOOP, FIRE do not move. 6-action minimal set, as in the reference.
+Sticky actions
+  - p = 0.25 per raw frame via the notebook's StickyFrameActions wrapper (measured 0.251);
+    ALE's own repeat_action_probability is 0, so it is not applied twice.
+  - evaluate() builds PongEnv(config) with the same config -> sticky 0.25 in evaluation too
+    (consistent with the Machado et al. evaluation protocol; the reference uses NO sticky actions).
+  Note on the test itself: my first version expected a 25% "executed != requested" rate and
+  failed at 20.06%; that is the correct value (0.25 x 0.8 when the previous action can equal
+  the request). The test now measures the stick probability directly.
+
+BUG FOUND (resume only, not learning):
+  Trainer.load() does torch.load(..., map_location=config.device). On cuda this moves the CPU
+  RNG ByteTensor to the GPU and torch.set_rng_state() raises
+  "TypeError: RNG state must be a torch.ByteTensor". Confirmed with the untouched original
+  Trainer: load works on cpu, FAILS on cuda. The notebook only ever ran on cpu, so it never
+  showed. It means the interrupted pilot could NOT have been resumed with pilot_run.py.
+  Fixed in the scratch copy only (pong_train_diag.FastCheckpointTrainer.load: map to cpu;
+  load_state_dict then moves weights/optimiser to the GPU).
+
+------------------------------------------------------------------------------------------
+2. LEARNING DIAGNOSTICS FROM THE PILOT'S LOGS  (pilot_learning_diagnostics.png/.json)
+------------------------------------------------------------------------------------------
+  window      loss    mean Q   |TD err|  grad norm  train return  episode length
+  0-50k      0.0122   -0.13    0.045     0.04       -20.6          883
+  50-100k    0.0091   -0.40    0.051     0.13       -20.8          823
+  100-200k   0.0035   -0.75    0.048     0.18       -20.7          846
+  200-400k   0.0028   -1.09    0.044     0.16       -20.4          902
+  400-600k   0.0044   -1.06    0.059     0.22       -18.5         1249
+  600-700k   0.0047   -0.69    0.063     0.22       -17.7         1442
+  Gradient updates by 700k decisions: 174,501. Grad norm never above the clip (0% > 10).
+  Healthy, not exploding, not flat:
+   - mean Q tracks its own target almost exactly at every stage (no divergence);
+   - Q first falls to about -1.35 (it learns it is losing points), then from ~400k rises to
+     -0.6 as games get longer and it starts winning points;
+   - the bump in loss/TD error after 400k coincides with the first real improvement
+     (episode length 880 -> 1440, return -20.7 -> -17.7) - normal for DQN when the return
+     distribution starts to change.
+   - Small gradients (0.2) and loss (0.004) are expected with +-1 rewards and gamma 0.99.
+  The ONE weak signal: Q-values hardly separate the actions (median best-minus-2nd gap 0.011,
+  see metrics below). The network has learned "how good is this situation" before
+  "which action helps" - typical of an early DQN, and the cause of the jittery play.
+
+------------------------------------------------------------------------------------------
+3. OUR SETTINGS vs A PUBLISHED DQN-FOR-PONG CONFIGURATION
+------------------------------------------------------------------------------------------
+Reference: CleanRL dqn_atari.py (defaults; Pong run with --env-id PongNoFrameskip-v4)
+  code: https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
+  docs: https://docs.cleanrl.dev/rl-algorithms/dqn/#dqn_ataripy
+  Reported: PongNoFrameskip-v4 20.25 +- 0.41 after 10M steps (docs table; the learning curve
+  itself is only an image, so how fast it learns is not stated in text).
+
+setting                 ours (plan / pilot)            CleanRL                      matters?
+----------------------  -----------------------------  ---------------------------  ------------------------
+total budget            100k (plan) / 1M (pilot)        10,000,000 steps             YES - biggest factor.
+                                                                                      Pilot at 700k = 7%;
+                                                                                      plan's 100k = 1%
+network                 conv 16-32-32, dense 256        conv 32-64-64, dense 512     YES, plausibly: ~4x fewer
+                        (~425k params)                  (~1.69M params)              params; on this GPU it
+                                                                                      costs no extra time
+environment             ALE/Pong-v5, sticky p=0.25      PongNoFrameskip-v4, no       MODERATE: makes Pong
+                        (train AND eval)                sticky actions               harder/noisier; it is
+                                                                                      the modern standard, keep
+replay buffer           20k (plan) / 100k (pilot)       1,000,000                    MODERATE: 1M needs ~14 GB
+                                                                                      here -> 200k is the
+                                                                                      practical max
+epsilon schedule        1.0 -> 0.05 over 80k            1.0 -> 0.01 over 1M          SMALL for a 1M run (both
+                                                        (10% of budget)              ~8-10% of budget); end
+                                                                                      value 0.05 vs 0.01 minor
+learning_starts         2,000                           80,000                       SMALL (early updates on a
+                                                                                      tiny buffer)
+target network sync     hard copy every 2,000           every 1,000 (tau 1.0 =       SMALL
+                                                        hard copy)
+loss                    Huber (smooth L1)               MSE                          SMALL (Huber = Nature DQN
+                                                                                      error clipping)
+gradient clipping       norm 10 (never active)          none                         NO
+optimiser / lr          Adam 1e-4                       Adam 1e-4                    same
+gamma / batch           0.99 / 32                       0.99 / 32                    same
+train frequency         1 update per 4 decisions        1 per 4 steps                same
+frame preprocessing     noop<=30, skip 4 + max-pool,    noop 30, MaxAndSkip 4,       same in effect (Pong has
+                        84x84 grey, stack 4,            84x84 grey, stack 4,         no lives; FIRE-reset not
+                        reward sign clip                EpisodicLife, FireReset,     needed - serves happen)
+                                                        reward clip
+input scaling           /255                            /255                         same
+
+------------------------------------------------------------------------------------------
+4. DIAGNOSIS IN PLAIN ENGLISH
+------------------------------------------------------------------------------------------
+- It is not a bug. Every part of the learning maths, the replay buffer and the inputs checks
+  out, and the logs show healthy, stable learning that only got going around 400k decisions.
+- It is mostly "not enough training": the published configuration that scores +20 trains
+  for 10M steps; our pilot stopped at 700k and the main plan uses 100k per run. Our agent
+  had done 174k gradient updates; at the same ratio the reference does 2.5M.
+- Settings make it slower than it needs to be: the network is ~4x smaller than the standard
+  one (chosen to be CPU-friendly; on the GPU the standard one is free), the replay buffer is
+  small, and sticky actions make the game harder (we should keep those - they are the fair
+  modern protocol, and identical for both methods).
+- The camping/jitter behaviour fits this picture: value learned, action preferences not yet.
+- Background knowledge, not from the cited page: DQN-family agents with this kind of setup
+  typically start winning Pong points within the first few million steps. I could not
+  confirm CleanRL's own curve from its text, so treat 1M as a test of "is it learning
+  faster", not "is it solved".
+
+------------------------------------------------------------------------------------------
+5. PLAN - at most 2 configurations to test (both apply identically to DQN and Double DQN)
+------------------------------------------------------------------------------------------
+Unchanged in both: sticky 0.25 (train+eval), Huber loss, Adam 1e-4, gamma 0.99, batch 32,
+grad clip 10, all preprocessing, evaluation rule (eps 0.01, held-out seeds).
+Both use FastCheckpointTrainer (cuda resume bug fixed, no checkpoint RAM spike).
+
+Config A - "reference-aligned"
+  network nature (32-64-64 conv, 512 dense)   was small 16-32-32/256
+  replay_capacity 200,000                     was 100k (pilot) / 20k (plan)
+  target_update_interval 1,000                was 2,000
+  epsilon 1.0 -> 0.01 over 100,000            was -> 0.05 over 80,000
+  learning_starts 20,000                      was 2,000
+  train_frequency 4                           unchanged
+  Why: closes the capacity/stability gaps to the published setup that is known to learn
+  Pong, at no extra compute cost on this GPU (measured 504/387 dec/s vs 494/376 baseline).
+  1M-decision run: ~43 min training + ~3-9 min evaluation = ~45-55 min per run
+  (DQN; Double DQN ~5% slower). Steady RAM ~4.5 GB (200k replay), no save spike.
+
+Config B - "A + more learning per decision"
+  everything in A, plus train_frequency 1    (4 updates per 4 decisions instead of 1)
+  Why: tests whether we are update-limited - the pilot only improved after ~100k updates.
+  4x the gradient updates per game played; same data.
+  1M-decision run: measured 153/141 dec/s -> ~1h55 training + ~3-9 min eval = ~2.0-2.1 h.
+
+Suggested order: A first (cheap). Optionally a control - resume the baseline pilot 600k->1M
+(copy of the checkpoint, converted; ~20-25 min) - so A can be compared at equal decisions.
+All of these runs exceed 15 minutes: waiting for your go-ahead.
+
+------------------------------------------------------------------------------------------
+6. CHECKPOINT RAM FIX (scratch copy only)  (pong_train_diag.py, test_fast_checkpoint.json)
+------------------------------------------------------------------------------------------
+  Replay arrays saved as raw .npy (np.save streams them, no in-memory copy); rest of state in
+  a small checkpoint.pt.gz; ordered swap (replay.tmp -> replay, old kept until the new
+  checkpoint is in place) so a crash mid-save never leaves a mismatched pair.
+  Full 100k buffer, cuda:  peak RAM during save +0.0 GiB (was +5.1 GiB, 8.25 GiB peak);
+  save 1.1 s (was 6-8 s); 1.32 GiB on disk; reload 1.4 s, buffer identical.
+  Exact recovery (save at 160, continue to 240, reload, continue): identical pixels, returns,
+  update counts, weights and replay - for small+nature networks x DQN+Double DQN.
+  run_training(cfg, folder, trainer_factory=FastCheckpointTrainer) resumes as before.
+
+------------------------------------------------------------------------------------------
+7. STANDARD COMPARISON METRICS  (compare_metrics.py -> metrics_table.csv)
+------------------------------------------------------------------------------------------
+  python compare_metrics.py <label> <policy.pt> --games 3
+  Runs explain.py headless on the same 3 held-out games (eps 0.01) and records:
+  mean score, bottom-third share (ball approaching / no ball), tracking correlation,
+  Q(down)-Q(up) vs arrival-point correlation, first-half heading-to-arrival share,
+  median top-2 Q action gap, share of lost points that were reachable.
+  Baseline (pilot 600k, 3 games):
+    mean score -20.33 | bottom third: approaching 72%, no ball 61% | tracking r 0.40 |
+    Q-pref vs arrival r 0.21 | heading to arrival 28% | action gap 0.011 | lost-reachable 98%
+  A better agent should show: higher score, lower bottom-third share, higher tracking r and
+  heading-to-arrival share, and a larger action gap.
+
+FILES: report.txt, test_core.py (+test_results.json), obs_images.py (+observations.png/.json,
+observation_example.npy), plot_pilot_logs.py (+pilot_learning_diagnostics.png/.json),
+pong_train_diag.py, test_fast_checkpoint.py (+.json), bench_configs.py (+.json),
+compare_metrics.py, metrics_table.csv, metrics\baseline_pilot_600k\

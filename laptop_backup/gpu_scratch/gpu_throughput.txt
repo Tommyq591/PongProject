@@ -1,0 +1,148 @@
+GPU THROUGHPUT TEST - CS4287 Assignment 2 (Pong DQN vs Double DQN)      2026-11-16
+=====================================================================================
+Machine : RTX 5050 Laptop GPU (8 GB, driver 610.71), Intel Core 5 210H, 15.6 GB RAM, on AC power
+Software: PongProject\.venv, Python 3.12.10, torch 2.15.0+cu132, gymnasium 1.4.0, ale-py 0.12.1
+Repo    : untouched. git status shows only the earlier untracked setup_check.txt. Notebook,
+          results, runs, videos not edited/run/saved. Everything below lives in ..\gpu_scratch.
+Note    : Smart App Control is OFF (needed so torch/ale_py DLLs load).
+
+-------------------------------------------------------------------------------------
+1. HOW THE CODE WAS OBTAINED, AND THE EXACT CODE CHANGES
+-------------------------------------------------------------------------------------
+build_extract.py reads the notebook with nbformat (read-only) and copies these code cells
+VERBATIM into pong_train_extract.py (it asserts each still contains the expected definition
+and no ROOT / display / plotting code):
+   cell 5  imports, write_json, append_csv, append_event      cell 18 bootstrap_values
+   cell 6  Config, seed_everything, epsilon_at                 cell 21 learning_update
+   cell 10 StickyFrameActions, PongEnv                         cell 27 evaluate (defined, not called)
+   cell 13 QNetwork                                            cell 28 Trainer
+   cell 16 ReplayBuffer, choose_action                         cell 29 run_training (defined, not called)
+ Excluded: cells 0/2 (repo path discovery), 7/11/14/19/23/24/25 (system info, plots, demos,
+ checks that read/write ROOT), 31/32 (launch main training), 34+ (results, videos, guided).
+
+CODE CHANGES TO NOTEBOOK LOGIC: NONE. The extracted file is byte-for-byte the notebook source.
+All differences are config overrides applied in run_one.py via dataclasses.replace on the
+plan's shared_config (read from Assignment2\experiment_plan.json, read-only):
+
+   config = replace(Config(**plan["shared_config"]),
+                    method=<dqn|double_dqn>, seed=<17|29|43>,
+                    device="cuda",            # notebook default/plan: "cpu"  (Config cell 6, line `device: str = "cpu"`)
+                    replay_capacity=100_000,  # plan: 20_000
+                    total_steps=<12000|3000|102000>)   # plan: 100_000 (only used as a label here)
+   extras only: torch_threads=8 (one CPU run), replay_capacity=20_000/200_000 (RAM runs)
+   Unchanged from plan: learning_starts 2000, batch 32, train_frequency 4, lr 1e-4, gamma .99,
+   target_update 2000, epsilon 1.0->0.05 over 80,000, torch_threads 4, sticky .25, frame_skip 4,
+   torch.use_deterministic_algorithms(True) (worked on CUDA with no extra env var).
+
+Trainer output folder redirected to gpu_scratch\runs\<run>\ (config.json, episodes.csv,
+updates.csv; plus checkpoint.pt.gz/policy.pt for the long run).
+
+How it was driven (no notebook loop involved): Trainer(config, folder);
+trainer.advance(2000) [pre-learning, timed separately]; then trainer.advance(1000) x N with
+torch.cuda.synchronize() after each chunk -> decisions/sec AFTER learning starts.
+Measurement only (no training logic): psutil RSS sampler (0.25 s) + Windows peak working set;
+torch.cuda.max_memory_allocated; nvidia-smi sampled every 250 ms during the measured window;
+500 greedy choose_action calls (epsilon=0) for per-action inference latency; for the 100k-run,
+one call of the notebook's own trainer.save() with a full replay buffer.
+
+To use the GPU in the real notebook, the equivalent change would be device="cuda" in the
+run configs (cell 6 default, the plan's shared_config / per-run config.json; the guided
+section also hard-codes config.device = "cpu" around raw notebook line 2886). NOT done.
+
+-------------------------------------------------------------------------------------
+2. PROBLEMS HIT (and fixes - none changed training logic)
+-------------------------------------------------------------------------------------
+a) My loader failed: "AttributeError: 'NoneType' object has no attribute '__dict__'" in
+   dataclasses. Cause: module loaded via importlib wasn't in sys.modules (needed with
+   `from __future__ import annotations`). Fix: register it in sys.modules (harness only).
+b) First run "hung" after finishing: my nvidia-smi sampler was orphaned and held the shell
+   pipe open. Fix: killed that one process; sampler now killed explicitly + stdin/stderr detached.
+c) First Double DQN result (125.8 dps) was INVALID: an emulator (lichii.exe) was using the
+   GPU (70% util, 4.3 GB VRAM). User closed it; the whole suite was re-run on an idle GPU
+   (each run logs GPU util/apps before starting: 0-1%, no apps, 47-57 C). Those first two
+   result files (result_*.json in gpu_scratch root) are superseded by results\.
+
+-------------------------------------------------------------------------------------
+3. RESULTS  (decisions/sec measured ONLY after learning starts, i.e. steps 2,000 -> end)
+-------------------------------------------------------------------------------------
+ run                          dev   replay  dec/s   GPU util   GPU alloc  peak RAM(WS)
+ dqn s17          (required)  cuda  100k    486.4   15.5% (max 20)  46.7 MiB  2.56 GiB
+ double_dqn s17   (required)  cuda  100k    456.8   17.0% (max 20)  46.7 MiB  2.54 GiB
+ dqn s17 3,000    (required)  cpu   100k    349.4     -              -        1.44 GiB
+ dqn s29                      cuda  100k    491.1   15.6%           46.7 MiB  2.56 GiB
+ dqn s43                      cuda  100k    491.7   15.9%           46.7 MiB  2.56 GiB
+ dqn s17 repeat               cuda  100k    477.9   15.5%           46.7 MiB  2.56 GiB
+ double_dqn s29               cuda  100k    463.0   17.2%           46.7 MiB  2.54 GiB
+ double_dqn s43               cuda  100k    464.6   17.1%           46.7 MiB  2.54 GiB
+ double_dqn s17 3,000         cpu   100k    313.8     -              -        1.44 GiB
+ dqn s17 3,000                cpu   20k     357.8     -              -        0.91 GiB
+ dqn s17 3,000, 8 threads     cpu   100k    362.0     -              -        1.44 GiB
+ dqn s17                      cuda  20k     486.4   15.8%           46.7 MiB  2.03 GiB
+ dqn s17                      cuda  200k    480.9   15.9%           46.7 MiB  3.19 GiB
+ double_dqn s17, 102,000      cuda  100k    392.3   16.3% (max 21)  46.7 MiB  8.25 GiB (*)
+   (*) peak is during the checkpoint save with a FULL 100k replay; see section 5.
+
+ GPU mean (12k runs): DQN 486.8 +/- 6.4 dec/s (4 runs), Double DQN 461.5 +/- 4.1 (3 runs).
+ Peak GPU memory reserved 58-60 MiB. CUDA context adds ~1.05 GiB process RAM vs CPU.
+ Pre-learning (env + replay only): ~1,400-1,500 dec/s.
+
+ Long run (100k decisions, epsilon decays to 0.05 at step 80k): rate falls as the agent
+ starts choosing actions with the network: first 10k after learning ~457 dec/s, last 10k
+ (epsilon 0.05) ~363 dec/s. Fitted cost +0.70 ms per greedy decision (micro-benchmark:
+ 0.59 ms/greedy action on cuda vs 0.35 ms on cpu - small single-state forward passes are
+ FASTER on the CPU because of transfer/sync overhead).
+
+ CPU comparison with results\throughput.json (teammate's i7-1360P, 4 threads): 97.2 dec/s
+ (their pilot: replay 2,000, learning_starts 128). This laptop's CPU: 349 dec/s (DQN) =
+ ~3.6x the teammate's CPU. GPU vs this laptop's CPU: ~1.39x (DQN), ~1.47x (Double DQN).
+ 8 threads vs 4 on CPU: +3.6% only. Replay size has ~no effect on speed.
+
+ WHY THE GPU HELPS SO LITTLE: GPU utilisation is ~16%. The network is tiny (batch 32,
+ ~425k params) and updates happen every 4 decisions; time goes to emulator stepping, numpy
+ replay sampling/stacking, Python overhead and per-update GPU syncs (float() of 5 metrics).
+ Faster training would need code changes (e.g. vectorised envs, bigger batches) - not done.
+
+-------------------------------------------------------------------------------------
+4. TIME ESTIMATES - 6 runs (3 seeds x DQN + Double DQN), run one after another
+-------------------------------------------------------------------------------------
+ Model: seconds/decision = t0(method) + greedy_fraction x 0.70 ms, fitted on the long run;
+ epsilon decays over 80% of the budget (as the notebook's create_plan does), so ~57% of
+ decisions are greedy on average. Eval = notebook rule (5 games every 20k + 5 initial +
+ 10 final); "low" assumes ~900-decision games (as measured, agent losing 21-0), "high"
+ assumes 3,000-decision games (competitive agent). Checkpoint every 10k at 8.0 s each
+ (measured with full 100k replay; roughly doubles with 200k).
+
+                     GPU training only   GPU incl. eval+ckpt   this CPU incl.(low)   teammate CPU (naive)
+ 500k each   (3M)        2.0 h               3.0 - 3.6 h            3.6 h                 8.6 h
+ 1M each     (6M)        4.1 h               5.9 - 7.1 h            7.1 h                17.2 h
+ 2M each    (12M)        8.2 h              11.8 - 14.2 h          14.2 h                34.3 h
+ (Naive 6xN / 12k-rate GPU figures: 1.8 h / 3.5 h / 7.0 h - optimistic, ignore late slowdown.)
+ Excludes startup, thermal throttling over hours, and anything else using the GPU/CPU.
+ CPU figures are approximate (only 1,000 measured decisions each; no long CPU run).
+
+-------------------------------------------------------------------------------------
+5. RAM ESTIMATES BY REPLAY SIZE
+-------------------------------------------------------------------------------------
+ Replay costs 14,142 bytes per slot (two 84x84 uint8 frames + small fields).
+ Observed: next_frames (np.zeros_like) is committed immediately; frames (np.zeros) fills
+ lazily, so short runs understate the final size. Model fits all measured runs.
+ Baseline process (no replay): CUDA 1.81 GiB, CPU 0.76 GiB.
+ Checkpoint save (notebook's Trainer.save: torch.save of the whole replay into gzip) needs
+ an extra ~3.9x the replay size TRANSIENTLY: measured 8.25 GiB peak vs 3.13 GiB steady at 100k.
+ It took 8.0 s and produced a 24.8 MB checkpoint.pt.gz (+1.6 MB policy.pt).
+
+ replay   buffer    steady (cuda / cpu)    peak during checkpoint (cuda / cpu)    fits 15.6 GB?
+ 100k     1.32 GiB   3.1 / 2.1 GiB            8.2 / 7.2 GiB                          yes, if ~9 GB free
+ 200k     2.63 GiB   4.5 / 3.4 GiB           14.7 / 13.6 GiB                         NO - swap / MemoryError likely
+ 500k     6.59 GiB   8.4 / 7.3 GiB           34.0 / 32.9 GiB                         NO
+ (Free RAM before the suite was 8.3 GB, so 100k is already close to the limit during saves.)
+ 200k/500k would require changing the notebook's checkpoint code (e.g. saving replay arrays
+ directly with np.save) or saving less often - not done, flagged only.
+
+-------------------------------------------------------------------------------------
+6. FILES (all in ..\gpu_scratch)
+-------------------------------------------------------------------------------------
+ build_extract.py, pong_train_extract.py (verbatim cells), run_one.py (one timed run),
+ run_all.sh (the suite), summarise.py (estimates), results\*.json (per run), logs\*.log,
+ runs\<run>\ (Trainer outputs, 27 MB), gpu_throughput.json (everything machine-readable),
+ dump_cells.py + all_cells.py (read-only dump of all notebook code cells, for inspection).

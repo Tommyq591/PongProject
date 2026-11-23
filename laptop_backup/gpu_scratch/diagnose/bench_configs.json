@@ -1,0 +1,40 @@
+{
+  "baseline_small_tf4": {
+    "overrides": {},
+    "exploring": {
+      "dps": 493.9074539919978,
+      "updates": 750
+    },
+    "greedy": {
+      "dps": 376.15729022109076,
+      "updates": 750
+    }
+  },
+  "A_nature_tf4": {
+    "overrides": {
+      "network": "nature"
+    },
+    "exploring": {
+      "dps": 503.75756123321815,
+      "updates": 750
+    },
+    "greedy": {
+      "dps": 387.0864052724562,
+      "updates": 750
+    }
+  },
+  "B_nature_tf1": {
+    "overrides": {
+      "network": "nature",
+      "train_frequency": 1
+    },
+    "exploring": {
+      "dps": 152.9651600279882,
+      "updates": 3000
+    },
+    "greedy": {
+      "dps": 141.174247010788,
+      "updates": 3000
+    }
+  }
+}

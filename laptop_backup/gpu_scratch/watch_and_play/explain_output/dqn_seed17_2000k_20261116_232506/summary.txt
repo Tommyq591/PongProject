@@ -1,0 +1,37 @@
+EXPLAIN - dqn_seed17_2000k
+policy: C:\CG_Files\PC _4th_Year_Autumn\1) Neural Computing - CS4287\Project_2\Tommy_GitHub\gpu_scratch\diagnose\runs\A_dqn_s17_2M\policy_2000k.pt
+games: 14:21   decisions logged: 2743   random (epsilon) actions: 31
+
+RAM positions vs screen pixels this run: ball median err 0.25 px (p95 0.77), paddle median 1.23 px (p95 3.57)
+
+WHERE THE PADDLE SITS (court rows 34-193, middle = 114):
+  ball moving away         n=  895  top 18%  middle 30%  bottom 52%   median y 143
+  ball moving towards us   n= 1256  top 34%  middle 30%  bottom 36%   median y 118
+  no ball in play          n=  583  top 43%  middle 20%  bottom 37%   median y 106
+
+ACTIONS (share of decisions):  NOOP 12%  FIRE 28%  RIGHT 17%  LEFT 12%  RIGHTFIRE 10%  LEFTFIRE 20%
+  ball moving away         up 25%  down 40%  stay 36%
+  ball moving towards us   up 32%  down 30%  stay 38%
+  no ball in play          up 20%  down 25%  stay 56%
+
+TRACKING / ANTICIPATION:
+  correlation paddle y vs ball y (ball approaching): 0.47
+  moves go towards the ball's CURRENT height: 53% of moves
+  Q(down)-Q(up) vs ball below paddle now: r=0.11;  vs ball will ARRIVE below: r=0.18
+  first half of each incoming ball: moving towards where it WILL arrive 33% of decisions
+  first move in the right direction comes 7% of the way through the approach (median)
+  when 'chase current ball' and 'go to arrival point' disagree (106 moves): follows current ball 32%, heads to arrival 68%
+
+INCOMING BALLS:
+  65 approaches, 21 ended in a lost point; ball takes ~18 decisions to reach our paddle; paddle crossed (most of) the court in 8 decisions (max 23 px in one)
+  reachable from where the paddle actually was: 100%; if it had started mid-court: 100%
+  of the LOST points: reachable from paddle 100%, from mid-court 100%; median miss 33 px; paddle started in bottom third 24%; ball arrived in top half 71%
+
+VALUE (highest Q):
+  median +0.596, range -1.154 .. +2.012
+  mean before LOST points (decisions before: value): -40: +0.41  -30: +0.46  -20: +0.45  -15: +0.35  -10: +0.22  -5: +0.11  -2: -0.17  0: -0.24
+  mean before WON points:                            -40: +0.67  -30: +0.73  -20: +0.86  -15: +1.19  -10: +1.32  -5: +1.41  -2: +1.44  0: +1.66
+  before a lost point, half of the value drop has happened ~5 decisions before it
+
+Files: decisions.csv, summary.json, 1_paddle_position_hist.png, 2_action_frequency.png,
+       3_max_q_over_time.png, 4_paddle_vs_ball_y.png, 5_incoming_ball_reach.png

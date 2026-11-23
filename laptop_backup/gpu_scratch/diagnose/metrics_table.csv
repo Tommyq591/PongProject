@@ -1,0 +1,2 @@
+label,policy,games,mean_score,bottom_third_ball_approaching,bottom_third_no_ball,tracking_corr_approaching,Qdown_minus_Qup_vs_arrival_r,first_half_heading_to_arrival,median_action_gap_top2,lost_points_reachable_from_paddle
+baseline_pilot_600k,../pilot_1M/run/policy.pt,3,-20.333333333333332,0.7180216031836271,0.6138328530259366,0.4043770574257331,0.21109489501953954,0.28115015974440893,0.01068568229675293,0.9841269841269841
